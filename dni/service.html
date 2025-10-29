@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service</title>
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="custom.css">
+    <!-- Main style file -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <!-- <div class="logo">
+            <a href="#home" class="logo"
+              ><img src="./Images/logo-3-no-bg.png" alt="4 Corners TDS"
+            /></a>
+          </div> -->
+                <div></div>
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <div class="x-mark" onclick="menuToggle()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <a href="index.html" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="service.html" class="nav-link">Services</a>
+            <a href="#leasing" class="nav-link">Leasing</a>
+            <a href="#fees" class="nav-link">Commission</a>
+             <a href="blog.html" class="nav-link">Blog</a>
+             <a href="contact-us.html" class="nav-link">Contact</a>
+
+                    <!-- Mobile -->
+                    <div class="mob-cta mob">
+                        <div class="phone-info">
+                            <i class="fa-solid fa-phone"></i>
+                            <a id="header_mobile_num" href="#contact" class="head-num">773-676-8952</a>
+                        </div>
+                        <a id="mobile_get_quote" href="#contact">
+                            <button class="head-btn">Contact Us</button>
+                        </a>
+                    </div>
+                </nav>
+                <i id="menu-bars" class="fa-solid fa-bars" onclick="menuToggle()"></i>
+
+                <!-- Contact Info & CTA -->
+                <div class="header-cta">
+                    <div class="phone-info">
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="#contact" class="head-num">773-676-8952</a>
+                    </div>
+                    <a href="#contact">
+                        <button class="head-btn">Contact Us</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!--Hero section-->
+    <section class="service-banner">
+        <h1 class="service-title">Service</h1>
+    </section>
+
+    <!-- Owner operators -->
+    <div class="container mt-5">
+        <div class="row text-center">
+            <h4>Owner-Operators</h4>
+            <p class="service-content">
+                Having a total of more than 25 years of experience in both dry van and flatbed operations, our team is
+                fully aware of what owner-operators require in order to make a profit and avoid stress. We offer total
+                back-end services including dispatch and load planning, documentation and compliance to make sure that
+                you remain on the road. Driving on your own, or operating a small fleet, we will help you to save time,
+                earn more, and minimize downtime using reliable and transparent dispatch solutions.
+            </p>
+        </div>
+
+        <!-- service cards-->
+        <div class="container my-5">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <div class="service-card d-lg-flex gap-3">
+                        <div class="card-img">
+                            <img src="images/truck1.jpg" alt="Pic of a man" class="img-fluid ">
+                        </div>
+                        <div class="card-content mt-2 mt-lg-0">
+                            <h4>Transition to Flatbed Hauling with Confidence</h4>
+                            <p class="service-content">Thinking of switching from dry van to flatbed operations? We’ll
+                                make the transition simple and safe. Our experts provide personalized training on load
+                                securement, tarping, and safety checks, ensuring you meet all DOT requirements. We’ll
+                                also help you source proper equipment and get matched with suitable loads that build
+                                your experience gradually.
+                            </p>
+                            <div class="d-flex justify-content-end"><a href="#" class="read-btn">Read More <i
+                                        class="bi bi-arrow-right"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="service-card d-lg-flex gap-3">
+                        <div class="card-img">
+                            <img src="images/truck2.jpg" alt="Pic of a man" class="img-fluid ">
+                        </div>
+                        <div class="card-content mt-2 mt-lg-0">
+                            <h4>Dry Van Dispatch</h4>
+                            <p class="service-content">The Dry Van Dispatch service created by us is aimed at men who
+                                prefer stability and consistency, as well as high load rates. We control all processes
+                                of your haul- negotiating the highest paying-loads, planning the most effective routes,
+                                and making all the communication with brokers.
+                            </p>
+                            <div class="d-flex justify-content-end"><a href="#" class="read-btn">Read More <i
+                                        class="bi bi-arrow-right"></i></a></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mt-1">
+                <div class="col-12 col-md-6">
+                    <div class="service-card d-lg-flex gap-3">
+                        <div class="card-img">
+                            <img src="images/truck3.jpg" alt="Pic of a man" class="img-fluid ">
+                        </div>
+                        <div class="card-content mt-2 mt-lg-0">
+                            <h4>Flatbed & Step Deck Dispatch</h4>
+                            <p class="service-content">We know that flatbed and step deck work requires accuracy and
+                                safety and timely coordination. Our dispatchers are experts at matching your equipment
+                                with high paying, appropriate freight be it construction materials, equipment, or
+                                specialized freight. We also track routes, weather, and delivery schedule so that we are
+                                guaranteed of secure and efficient transportation.
+                            </p>
+                            <div class="d-flex justify-content-end"><a href="#" class="read-btn">Read More <i
+                                        class="bi bi-arrow-right"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="service-card d-lg-flex gap-3">
+                        <div class="card-img">
+                            <img src="images/startup.jpg" alt="Pic of a man" class="img-fluid ">
+                        </div>
+                        <div class="card-content mt-2 mt-lg-0">
+                            <h4>New Start-Ups</h4>
+                            <p class="service-content">It can be daunting to start your own trucking company, the
+                                permits, insurance, brokers and load boards can be a puzzle. Through our Start-Up
+                                Assistance program, all is made easy. We take you through the whole process, from
+                                establishing your MC authority up to the time we assist you in identifying your first
+                                profitable load. </p>
+                            <div class="d-flex justify-content-end"><a href="#" class="read-btn">Read More <i
+                                        class="bi bi-arrow-right"></i></a></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="top-footer">
+                <div class="fot-1">
+                    <a class="logo" href="#home"><img src="images/logo.png" alt="4 Corners TDS" /></a>
+                    <p>
+                        Professional truck dispatch services for owner-operators and
+                        trucking companies nationwide. 25+ years of experience keeping you
+                        rolling.
+                    </p>
+                    <div class="platforms">
+                        <a href="#" class="platform">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="platform">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="fot-2">
+                    <h3>Services</h3>
+                    <a href="#services">Dry Van Dispatch</a>
+                    <a href="#services">Flatbed & Step Deck Dispatch</a>
+                    <a href="#services">New Start-Up</a>
+                    <a href="#services">Leasing Opportunity</a>
+                </div>
+                <div class="fot-2">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#leasing">Leasing</a>
+                    <a href="#fees">Commission</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="fot-3">
+                    <h3>Contact Info</h3>
+                    <div class="foot-contact">
+                        <a href="tel:773-676-8952"><i class="fa-solid fa-phone"></i>773-676-8952</a>
+                        <a href="tel:773-676-8952"><i class="fa-solid fa-phone"></i>312-910-5388</a>
+                        <a href="mailto:dispatch@4cornerstds.com"><i
+                                class="fa-solid fa-envelope"></i>dispatch@4cornerstds.com</a>
+                        <a href="#contact"><i class="fa-solid fa-location-dot"></i>Chicago, IL 60645</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="wi">
+                <p>
+                    © <span id="footer-year"></span> 4 Corners TDS. All rights reserved.
+                </p>
+                <div class="bi">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- SWIPER -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- ANIMATION -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- JS -->
+    <script src="./JS/swiper.js"></script>
+    <script src="./JS/script.js"></script>
+</body>
+
+</html>
