@@ -1373,7 +1373,21 @@
     <script>
       AOS.init();
     </script>
-
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const serviceLink = document.querySelector(".service-menu");
+    const submenu = document.querySelector(".sub-menu");
+  
+    serviceLink.addEventListener("click", (e) => {
+      if (window.innerWidth <= 992) {
+        e.preventDefault(); // prevent page reload
+        submenu.classList.toggle("active");
+      }
+    });
+  });
+  </script>
+  
+  
     <!-- JS -->
     <script src="./JS/swiper.js"></script>
     <script src="./JS/script.js"></script>

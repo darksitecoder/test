@@ -75,16 +75,31 @@
 
 .sub-menu {
   position: absolute;
-  top: 80%;
+  top: 100%; /* Start just below header */
   left: 32%;
   background: #fafafaf2;
   border-radius: 0px 0px 8px 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: none;
+  display: block;
   flex-direction: column;
   min-width: 220px;
-  z-index: 0;
+  /* border: 3px solid red; */
+  /* animation setup */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /* place behind header */
+  z-index: -1;
 }
+.nav-link[href="service.html"]:hover + .sub-menu,
+.sub-menu:hover {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 10; /* bring above when visible */
+}
+
 
 .sub-menu ul {
   list-style: none;
@@ -306,13 +321,14 @@ h6 {
 
 /* Header */
 .header {
-  position: fixed;
+  position: relative;
+  z-index: 5;
   top: 0;
   width: 100%;
   background-color: hsla(0, 0%, 98%, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  z-index: 1000;
+  /* z-index: 1000; */
   transition: var(--transition-smooth);
   padding: 8px 0;
 }
