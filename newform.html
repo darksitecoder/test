@@ -686,5 +686,26 @@
         initProgressBar();
         initQuestions();
     </script>
+
+
+<script>
+    function completeQuestionnaire() {
+    // Send data to Laravel
+    fetch('/api/restaurant-order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(answers)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Show completion screen
+        document.getElementById('questionsWrapper').style.display = 'none';
+        document.getElementById('completionScreen').classList.add('active');
+    });
+}
+</script>
 </body>
 </html>
