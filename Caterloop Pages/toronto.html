@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaterLoop Navbar</title>
+
+
+		<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap5" />
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet"> -->
+
+	<link rel="stylesheet" href="fonts/icomoon/style.css">
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<link rel="stylesheet" href="css/tiny-slider.css">
+	<link rel="stylesheet" href="css/aos.css">
+	<link rel="stylesheet" href="css/flatpickr.min.css">
+	<link rel="stylesheet" href="css/glightbox.min.css">
+	<link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background-color: #3a5bcc;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-link::after {
+            content: '▼';
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-link::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            border-left-color: #3a5bcc;
+            padding-left: 2rem;
+            color: #3a5bcc;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #3a5bcc;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Demo Content */
+        .content {
+            max-width: 1200px;
+			width: 100%;
+            margin: 3rem auto;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        #login .dropdown {
+            min-width: 150px;
+        }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background: white;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-link {
+                width: 100%;
+                padding: 1rem;
+                justify-content: space-between;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                box-shadow: none;
+                border-radius: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                margin-top: 0;
+                background: #f8f9fa;
+            }
+
+            .nav-item.active .dropdown {
+                max-height: 500px;
+            }
+
+            .nav-item.active .nav-link::after {
+                transform: rotate(180deg);
+            }
+
+            .dropdown-item {
+                padding: 0.8rem 1.5rem 0.8rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CaterLoop</div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item" id="offices">
+                    <a href="#" class="nav-link">For Offices</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Office Meal Programs</a>
+                        <a href="#" class="dropdown-item">On Demand Catering</a>
+                        <a href="#" class="dropdown-item">Managed Catering + Events</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="restaurants">
+                    <a href="#" class="nav-link">For Restaurants</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Restaurant Sign In</a>
+                        <a href="#" class="dropdown-item">Sign Up Your Restaurant</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="about">
+                    <a href="#" class="nav-link">About Us</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">About CaterLoop</a>
+                        <a href="#" class="dropdown-item">Blog</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="login">
+                    <a href="#" class="nav-link">Login</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+    
+	<div class="section section-2 pt-5 mt-4">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
+					<div class="image-stack mb-5 mb-lg-0">
+						<div class="image-stack__item image-stack__item--bottom" data-aos="fade-up"  >
+							<img src="images/Ultimate-Feast_Catering_2025_97-scaled.jpg" alt="Image" class="img-fluid rellax ">
+						</div>
+						<div class="image-stack__item image-stack__item--top" data-aos="fade-up" data-aos-delay="100"  data-rellax-percentage="0.5">
+							<img src="images/istockphoto-1457979959-612x612.webp" alt="Image" class="img-fluid">
+						</div>
+					</div>
+
+				</div>
+				<div class="col-lg-5 order-lg-1">
+
+					<div>
+						<h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Corporate Catering in Toronto</h2>
+
+						<p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, dicta? Accusamus temporibus, obcaecati ex incidunt reiciendis natus consequuntur sunt a quia voluptatem, itaque nisi laudantium aspernatur. Earum repellat debitis dolorum.</p>
+
+						<p data-aos="fade-up" data-aos-delay="300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda iste dolore provident cupiditate nostrum atque modi aliquam tenetur deleniti cum enim, quo fuga recusandae nam?</p>
+
+						<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Book a call</a></p>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>		
+	</div>
+
+	<div class="section service-section-1">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 mb-4 mb-lg-0">
+					<div class="heading-content" data-aos="fade-up">
+						<h2>Our <span class="d-block">Services</span></h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">View All</a></p>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="100">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/01.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Tourism</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="200">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/02.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Package Tours</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="300">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/03.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Travel Insurance</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="400">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/04.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Airport Lounge Access</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="section section-3" data-aos="fade-up" data-aos-delay="100">
+		<div class="container">
+			<div class="row align-items-center justify-content-between  mb-5">
+				<div class="col-lg-5" data-aos="fade-up">
+					<h2 class="heading mb-3">Catering Categories</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum omnis autem tempora maxime assumenda cum dignissimos distinctio repudiandae optio laudantium iusto, necessitatibus possimus alias. Possimus doloribus nam expedita. Accusamus in eum dolorum! Ut quasi voluptatum doloribus earum explicabo pariatur itaque, quos minima est temporibus reiciendis nemo, omnis animi fuga id!</p>
+				</div>		
+				<div class="col-lg-5 text-md-end" data-aos="fade-up" data-aos-delay="100">
+					<div id="destination-controls">
+						<span class="prev me-3" data-controls="prev">
+							<span class="icon-chevron-left"></span>
+
+						</span>
+						<span class="next" data-controls="next">
+							<span class="icon-chevron-right"></span>
+
+						</span>
+					</div>
+				</div>
+			</div>	
+
+		</div>		
+
+		<div class="destination-slider-wrap">
+			<div class="destination-slider">
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/1683266155_1.jpg" alt="Image" class="img-fluid">
+						<div class="price">Breakfast & Brunch</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Breakfast & Brunch</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/images.jpg" alt="Image" class="img-fluid">
+						<div class="price">Healthy</div>
+						 </a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Healthy</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="Image" class="img-fluid">
+						<div class="price">Middle Eastern</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Middle Eastern</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/national-fast-food-day.webp" alt="Image" class="img-fluid">
+						<div class="price">Asian</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Asian</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/pexels-janetrangdoan-1092730.jpg" alt="Image" class="img-fluid">
+						<div class="price">Sandwiches</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Sandwiches</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/1683266155_1.jpg" alt="Image" class="img-fluid">
+						<div class="price">Mexican & Latin</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Mexican & Latin</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/pexels-janetrangdoan-1092730.jpg" alt="Image" class="img-fluid">
+						<div class="price">Italian</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Italian</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+				<div class="destination">
+					<div class="thumb">
+						<a href=""><img src="images/Ultimate-Feast_Catering_2025_97-scaled.jpg" alt="Image" class="img-fluid">
+						<div class="price">Shushi</div></a>
+					</div>
+					<div class="mt-4">
+						<!-- <h3><a href="#">Shushi</a></h3> -->
+						<!-- <span class="meta">Maldives, Repbulic Maldives</span> -->
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="section service-section-1">
+		<div class="container">
+			<div class="d-flex justify-content-center align-items-center">
+					<div class="heading-content" data-aos="fade-up">
+						<h2 class="text-center">Types of Catering Services Available in Toronto</h2>
+						<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt nisi vero totam architecto voluptas nostrum amet temporibus fugit, porro sed! Sit ea molestiae reprehenderit at veritatis et saepe deserunt cumque!</p>
+						
+					</div>
+				</div>
+			<div class="row">
+
+				
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="100">
+							<div class="service-1 ">
+								<span class="icon">
+									<img src="images/svg/01.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Tourism</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="200">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/02.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Package Tours</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="300">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/03.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Travel Insurance</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-6 col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up"  data-aos-delay="400">
+							<div class="service-1">
+								<span class="icon">
+									<img src="images/svg/04.svg" alt="Image" class="img-fluid">
+								</span>
+								<div>
+									<h3>Airport Lounge Access</h3>
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+
+			</div>
+			<div class="d-flex justify-content-center align-items-center">
+					<div class="heading-content" data-aos="fade-up">
+						<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Book a call</a></p>
+					</div>
+				</div>
+		</div>
+	</div>
+
+
+		<div class="section">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-12"data-aos="fade-up" data-aos-delay="0">
+					
+					<h2 class="heading mb-5">Best Catering Restaurants in Toronto</h2>
+					<p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima provident obcaecati ipsam labore minus cum in eveniet placeat. Optio tempore molestiae ratione nostrum necessitatibus iure unde facere totam? Qui est debitis architecto, illum atque repellendus inventore ex beatae, quisquam vitae rerum impedit deleniti quam rem odio. Quidem reprehenderit ipsam placeat.</p>
+				</div>
+			</div>
+			<div class="row align-items-stretch">
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/national-fast-food-day.webp" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							
+								<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<div class="row align-items-stretch">
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/national-fast-food-day.webp" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<h3><a href="#">Caterloop Kitchen</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							
+								<p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Get Your Order</a></p>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>		
+	</div>
+
+		<div class="py-5 bg-primary">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 text-center mb-3 mb-lg-0 text-lg-start">
+				</div>		
+				<div class="col-lg-6 text-center text-lg-end">
+					<h3 class="text-white m-0">Begin your adventurous journey here.</h3>
+					<div class="email_in d-flex justify-content-end">
+						<input type="email" name="" id="" placeholder="Enter Your Email">
+						<a href="#" class="btn btn-outline-white">Get started</a>
+					</div>
+				</div>
+			</div>		
+		</div>		
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-lg-5 mb-4 mb-lg-0 order-lg-2" data-aos="fade-up">
+					<img src="images/national-fast-food-day.webp" alt="Image" class="img-fluid">
+				</div>
+				<div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+					<h2 class="heading mb-4">Sweet Memories Come To Life Again</h2>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+					<p class="my-4" data-aos="fade-up" data-aos-delay="200"><a href="#" class="btn btn-primary">Read more</a></p>
+				</div>	
+			</div>
+		</div>
+	</div>
+
+	<div class="section bg-light">
+		
+
+
+
+		<!-- <h2 class="heading mb-5 text-center">Testimonials</h2>
+
+		<div class="text-center mb-5">
+			<div id="prevnext-testimonial">
+				<span class="prev me-3" data-controls="prev">
+					<span class="icon-chevron-left"></span>
+
+				</span>
+				<span class="next" data-controls="next">
+					<span class="icon-chevron-right"></span>
+
+				</span>
+			</div>
+		</div>
+
+		<div class="wide-slider-testimonial-wrap">
+			<div class="wide-slider-testimonial">
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_1.jpg" alt="Free template by TemplateUX">
+							<h3>John Doe</h3>
+							<p class="position mb-5">CEO, Founder</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+					</blockquote>
+				</div>
+
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_2.jpg" alt="Free template by TemplateUX">
+							<h3>James Woodland</h3>
+							<p class="position mb-5">Designer at Facebook</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.&rdquo;</p>
+
+					</blockquote>
+				</div>
+
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_3.jpg" alt="Free template by TemplateUX">
+							<h3>Rob Smith</h3>
+							<p class="position mb-5">Product Designer at Twitter</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
+					</blockquote>
+				</div>
+
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_1.jpg" alt="Free template by TemplateUX">
+							<h3>John Doe</h3>
+							<p class="position mb-5">CEO, Founder</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+					</blockquote>
+				</div>
+
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_2.jpg" alt="Free template by TemplateUX">
+							<h3>James Woodland</h3>
+							<p class="position mb-5">Designer at Facebook</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.&rdquo;</p>
+
+					</blockquote>
+				</div>
+
+				<div class="item">
+					<blockquote class="block-testimonial">
+						<div class="author">
+							<img src="images/person_3.jpg" alt="Free template by TemplateUX">
+							<h3>Rob Smith</h3>
+							<p class="position mb-5">Product Designer at Twitter</p>
+						</div>
+						<p>
+							<div class="quote">&ldquo;</div>
+						&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
+					</blockquote>
+				</div>
+			</div>
+		</div> -->
+
+
+
+	</div> <!-- /.untree_co-section -->
+
+	<div class="section">
+		<div class="container">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-lg-5 mb-4 mb-lg-0">
+					<img src="images/pexels-janetrangdoan-1092730.jpg" alt="Image" class="img-fluid">
+				</div>
+				<div class="col-lg-5 mt-4 mt-lg-0"  data-aos="fade-up" data-aos-delay="100">
+
+					<h2 class="heading mb-5">Frequently Asked <br> Questions</h2>
+
+					<div class="custom-accordion" id="accordion_1">
+						<div class="accordion-item">
+							<h2 class="mb-0">
+								<button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How to download and register?</button>
+							</h2>
+
+							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion_1">
+								<div class="accordion-body">
+									Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+								</div>
+							</div>
+						</div> <!-- .accordion-item -->
+
+						<div class="accordion-item">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How to create your paypal account?</button>
+							</h2>
+							<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion_1">
+								<div class="accordion-body">
+									A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+								</div>
+							</div>
+						</div> <!-- .accordion-item -->
+						<div class="accordion-item">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How to link your paypal and bank account?</button>
+							</h2>
+
+							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion_1">
+								<div class="accordion-body">
+									When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
+								</div>
+							</div>
+
+						</div> <!-- .accordion-item -->
+
+
+						<div class="accordion-item">
+							<h2 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">We are better than others?</button>
+							</h2>
+
+							<div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion_1">
+								<div class="accordion-body">
+									When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
+								</div>
+							</div>
+
+						</div> <!-- .accordion-item -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-12"data-aos="fade-up" data-aos-delay="0">
+					
+					<h2 class="heading mb-5">Recent Posts</h2>
+				</div>
+			</div>
+			<div class="row align-items-stretch">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/gal_1.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<span class="date">May 14, 2020</span>
+							<h3><a href="#">Far far away, behind the word mountains</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<a href="single.html" class="more d-flex align-items-center float-start">
+								<span class="label">Read More</span>
+								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/gal_2.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<span class="date">May 14, 2020</span>
+							<h3><a href="#">Far far away, behind the word mountains</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+							<a href="single.html" class="more d-flex align-items-center float-start">
+								<span class="label">Read More</span>
+								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/gal_3.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<span class="date">May 14, 2020</span>
+							<h3><a href="#">Far far away, behind the word mountains</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							<a href="single.html" class="more d-flex align-items-center float-start">
+								<span class="label">Read More</span>
+								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+					<div class="media-entry">
+						<a href="#">
+							<img src="images/gal_4.jpg" alt="Image" class="img-fluid">
+						</a>
+						<div class="bg-white m-body">
+							<span class="date">May 14, 2020</span>
+							<h3><a href="#">Far far away, behind the word mountains</a></h3>
+							<p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+							<a href="single.html" class="more d-flex align-items-center float-start">
+								<span class="label">Read More</span>
+								<span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>		
+	</div>
+
+
+
+	<div class="py-5 bg-primary">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-7 text-center mb-3 mb-lg-0 text-lg-start">
+					<h3 class="text-white m-0">Begin your adventurous journey here.</h3>
+				</div>		
+				<div class="col-lg-5 text-center text-lg-end">
+					<a href="#" class="btn btn-outline-white">Get started</a>
+				</div>
+			</div>		
+		</div>		
+	</div>
+<!-- Contact Section -->
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12"	data-aos="fade-up" data-aos-delay="0">
+				
+				<h2 class="heading mb-5">Get In Touch</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+				<div class="contact-info">
+
+					<div class="address mt-4">
+						<i class="icon-room"></i>
+						<h4 class="mb-2">Location:</h4>
+						<p>43 Raymouth Rd. Baltemoer, London 3910</p>
+					</div>
+
+					<div class="open-hours mt-4">
+						<i class="icon-clock-o"></i>
+						<h4 class="mb-2">Open Hours:</h4>
+						<p>
+							Sunday-Friday:<br>
+							11:00 AM - 2300 PM
+						</p>
+					</div>
+
+					<div class="email mt-4">
+						<i class="icon-envelope"></i>
+						<h4 class="mb-2">Email:</h4>
+						<p>info@</p>
+					</div>
+
+					<div class="phone mt-4">
+						<i class="icon-phone"></i>
+						<h4 class="mb-2">Call:</h4>
+						<p>+1 1234 55488 55</p>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+				<form action="#">
+					<div class="row">
+						<div class="col-6 mb-3">
+							<input type="text" class="form-control" placeholder="Your Name">
+						</div>
+						<div class="col-6 mb-3">
+							<input type="email" class="form-control" placeholder="Your Email">
+						</div>
+						<div class="col-12 mb-3">
+							<input type="text" class="form-control" placeholder="Subject">
+						</div>
+						<div class="col-12 mb-3">
+							<textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+						</div>
+
+						<div class="col-12">
+							<input type="submit" value="Send Message" class="btn btn-primary">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div> 
+	
+		<!-- Preloader -->
+		<div id="overlayer"></div>
+		<div class="loader">
+			<div class="spinner-border text-primary" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const overlay = document.getElementById('overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        // Close menu when overlay is clicked
+        overlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            navItems.forEach(item => item.classList.remove('active'));
+        });
+
+        // Mobile dropdown toggle
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    
+                    // Close other dropdowns
+                    navItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    item.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                navItems.forEach(item => item.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/aos.js"></script>
+		<script src="js/navbar.js"></script>
+		<script src="js/counter.js"></script>
+		<script src="js/rellax.js"></script>
+		<script src="js/flatpickr.js"></script>
+		<script src="js/glightbox.min.js"></script>
+		<script src="js/custom.js"></script>
+</body>
+</html>
