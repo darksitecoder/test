@@ -19,8 +19,7 @@
             background: #000000;
             color: #ffffff;
             overflow: hidden;
-            overflow-x: hidden;
-  scroll-behavior: smooth;
+            height: 100vh;
         }
 
         .progress-container {
@@ -63,7 +62,7 @@
             justify-content: center;
             padding: 100px 20px 60px;
             position: absolute;
-            /* width: 100%; */
+            width: 100%;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -101,7 +100,6 @@
 
         .input-field {
             margin-bottom: 20px;
-            position: relative;
         }
 
         .input-field input,
@@ -348,24 +346,6 @@
         .error-message.show {
             display: block;
         }
-
-        /* RESPONSIVENESS */
-@media (max-width: 1024px) {
-  .question-text { font-size: 30px; }
-  .mui-input, .option-btn { font-size: 16px; padding: 16px 20px; }
-}
-@media (max-width: 768px) {
-  .question-text { font-size: 26px; }
-  .progress-bar-container { height: 4px; }
-  .mui-input, .option-btn { font-size: 15px; padding: 14px 18px; }
-  .continue-btn { width: 100%; justify-content: center; }
-}
-@media (max-width: 480px) {
-  .question-text { font-size: 22px; }
-  .mui-input, .option-btn { font-size: 14px; }
-  .checkmark { width: 70px; height: 70px; }
-  .checkmark .material-icons { font-size: 48px; }
-}
     </style>
 </head>
 <body>
