@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HungerHub - Get Started</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .testimonial-section {
+            flex: 1;
+            background: linear-gradient(135deg, #e8e4f3 0%, #d4d0e8 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 60px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e91e63 0%, #d81b60 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .progress-step {
+            height: 4px;
+            flex: 1;
+            background: #e0e0e0;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+
+        .progress-step.active {
+            background: #4ade80;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            padding: 0;
+        }
+
+        .back-btn:hover {
+            color: #333;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .option-btn {
+            padding: 16px 24px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-btn:hover {
+            border-color: #6366f1;
+            background: #f5f5ff;
+        }
+
+        .option-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .meal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .meal-card {
+            padding: 24px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .meal-card:hover {
+            border-color: #6366f1;
+            background: #f5f5ff;
+        }
+
+        .meal-card.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .meal-icon {
+            font-size: 48px;
+        }
+
+        .meal-label {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .time-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .time-btn {
+            padding: 12px 24px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover {
+            border-color: #6366f1;
+            background: #f5f5ff;
+        }
+
+        .time-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .day-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .day-btn {
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .day-btn:hover {
+            border-color: #6366f1;
+            background: #f5f5ff;
+        }
+
+        .day-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .date-input {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 16px;
+        }
+
+        .slider-container {
+            margin: 30px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #6366f1 0%, #6366f1 40%, #e0e0e0 40%, #e0e0e0 100%);
+            outline: none;
+            -webkit-appearance: none;
+            position: relative;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+        }
+
+        .slider-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .toggle {
+            width: 48px;
+            height: 28px;
+            background: #6366f1;
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle.off {
+            background: #e0e0e0;
+        }
+
+        .toggle-thumb {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: left 0.3s;
+        }
+
+        .toggle.on .toggle-thumb {
+            left: 23px;
+        }
+
+        .toggle-label {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .toggle-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #999;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .continue-btn {
+            padding: 16px 40px;
+            background: #2d3561;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .continue-btn:hover {
+            background: #1f2547;
+        }
+
+        .continue-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .continue-btn.visible {
+            display: block;
+        }
+
+        .testimonial-content {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .google-reviews {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 18px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: #c4c4c4;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #2d3561;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-size: 16px;
+            color: #2d3561;
+            font-weight: 500;
+        }
+
+        .food-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .category {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .food-item {
+            font-size: 15px;
+            color: #666;
+            padding: 4px 0;
+        }
+
+        .preference-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .preference-btn {
+            padding: 8px 16px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preference-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c4c4c4;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #2d3561;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .dietary-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .dietary-btn {
+            padding: 12px 24px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dietary-btn:hover {
+            border-color: #6366f1;
+            background: #f5f5ff;
+        }
+
+        .dietary-btn.selected {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .text-input::placeholder {
+            color: #aaa;
+        }
+
+        .skip-btn {
+            padding: 16px 40px;
+            background: transparent;
+            color: #2d3561;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .skip-btn:hover {
+            text-decoration: underline;
+        }
+
+        .thank-you-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+
+        .email-icon {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 40px;
+        }
+
+        .thank-you-title {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-text {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .info-card {
+            background: white;
+            border: 2px solid #e8e4f3;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+        }
+
+        .info-illustration {
+            width: 200px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .info-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3561;
+            margin-bottom: 16px;
+        }
+
+        .info-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .testimonial-section {
+                min-height: 400px;
+            }
+
+            .food-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .question {
+                font-size: 18px;
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .meal-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .thank-you-title {
+                font-size: 32px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div class="logo">
+                <div class="logo-circle">h</div>
+                <span>hungerhub</span>
+            </div>
+
+            <!-- Step 1 -->
+            <div id="step1" class="step">
+                <div class="progress-bar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                </div>
+
+                <h1>Plug in your office's size and catering needs to see what your meal plan on hungerhub will look like!</h1>
+                
+                <div class="question">How many people do you expect to order on your meal plan?</div>
+                
+                <div class="options-grid">
+                    <button class="option-btn" data-value="<20">&lt;20</button>
+                    <button class="option-btn" data-value="20-39">20-39</button>
+                    <button class="option-btn" data-value="40-59">40-59</button>
+                    <button class="option-btn" data-value="60-79">60-79</button>
+                    <button class="option-btn" data-value="80-99">80-99</button>
+                    <button class="option-btn" data-value="100+">100+</button>
+                </div>
+
+                <button class="continue-btn" id="step1Btn">Customize your meal plan</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="step hidden">
+                <button class="back-btn" onclick="goToStep(1)">
+                    <span>←</span> Back
+                </button>
+
+                <div class="progress-bar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                </div>
+
+                <div class="question">Which meal are you looking to bring to your team?</div>
+                <p class="subtitle">Let's begin with one meal plan. You can always add more later in your dashboard.</p>
+
+                <div class="meal-options">
+                    <div class="meal-card" data-value="breakfast">
+                        <div class="meal-icon">🍕</div>
+                        <div class="meal-label">Breakfast</div>
+                    </div>
+                    <div class="meal-card" data-value="lunch">
+                        <div class="meal-icon">🥗</div>
+                        <div class="meal-label">Lunch</div>
+                    </div>
+                    <div class="meal-card" data-value="dinner">
+                        <div class="meal-icon">🍽️</div>
+                        <div class="meal-label">Dinner</div>
+                    </div>
+                    <div class="meal-card" data-value="other">
+                        <div class="meal-icon">🍴</div>
+                        <div class="meal-label">Other</div>
+                    </div>
+                </div>
+
+                <div class="question">What is the ideal time for your dinner delivery?</div>
+
+                <div class="time-options">
+                    <button class="time-btn" data-value="4:00 pm">4:00 pm</button>
+                    <button class="time-btn" data-value="5:00 pm">5:00 pm</button>
+                    <button class="time-btn" data-value="6:00 pm">6:00 pm</button>
+                    <button class="time-btn" data-value="custom">Select Your Time</button>
+                </div>
+
+                <button class="continue-btn" id="step2Btn">Continue</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="step3" class="step hidden">
+                <button class="back-btn" onclick="goToStep(2)">
+                    <span>←</span> Back
+                </button>
+
+                <div class="progress-bar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                    <div class="progress-step"></div>
+                </div>
+
+                <div class="question">How often do you want to enable dinner delivery?</div>
+
+                <div class="time-options">
+                    <button class="time-btn" data-value="every-week">Every week</button>
+                    <button class="time-btn" data-value="custom-dates">I will set my own dates</button>
+                </div>
+
+                <div class="question">On what day(s) would you like to receive meals?</div>
+
+                <div class="day-options">
+                    <button class="day-btn" data-value="monday">Monday</button>
+                    <button class="day-btn" data-value="tuesday">Tuesday</button>
+                    <button class="day-btn" data-value="wednesday">Wednesday</button>
+                    <button class="day-btn" data-value="thursday">Thursday</button>
+                    <button class="day-btn" data-value="friday">Friday</button>
+                    <button class="day-btn" data-value="saturday">Saturday</button>
+                    <button class="day-btn" data-value="sunday">Sunday</button>
+                </div>
+
+                <div class="question">When would you like to start?</div>
+
+                <div style="margin: 20px 0;">
+                    <span class="date-input">
+                        <span>📅</span> Select date
+                    </span>
+                    <button class="time-btn" data-value="not-sure">I am not sure yet</button>
+                </div>
+
+                <div class="question">Meal allowance per user</div>
+
+                <div class="time-options">
+                    <button class="time-btn" data-value="daily">Daily</button>
+                    <button class="time-btn" data-value="weekly">Weekly</button>
+                </div>
+
+                <div class="question">Daily per person allowance</div>
+
+                <div class="slider-container">
+                    <div class="slider-labels">
+                        <span>$0</span>
+                        <span>$50</span>
+                    </div>
+                    <input type="range" min="0" max="50" value="20" class="slider" id="allowanceSlider">
+                    <div class="slider-value" id="sliderValue">$20</div>
+                </div>
+
+                <div class="toggle-container">
+                    <div class="toggle on" id="creditToggle" onclick="toggleCredit()">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    <div class="toggle-label">Enable payment with personal credit card</div>
+                </div>
+                <div class="toggle-hint">
+                    <span>ℹ️</span>
+                    <span>Allow users to use their credit card if they go over set allowance</span>
+                </div>
+
+                <button class="continue-btn" id="step3Btn">Continue</button>
+            </div>
+
+            <!-- Step 4 -->
+            <div id="step4" class="step hidden">
+                <div class="progress-bar">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                </div>
+
+                <div id="foodCarousel">
+                    <div class="food-categories">
+                        <div class="category">
+                            <div class="category-title">Burgers</div>
+                            <div class="food-item">Salads</div>
+                            <div class="food-item">Bowls</div>
+                            <div class="food-item">Vegan Friendly</div>
+                            <div class="food-item">Gluten Free Friendly</div>
+                            <div class="preference-actions">
+                                <button class="preference-btn">👍 Neutral</button>
+                                <button class="preference-btn">👎</button>
+                            </div>
+                        </div>
+                        <div class="category">
+                            <div class="category-title">Sandwiches</div>
+                            <div class="food-item">Sandwiches</div>
+                            <div class="food-item">Wraps</div>
+                            <div class="food-item">Burgers</div>
+                            <div class="food-item">Chicken Sandwiches</div>
+                            <div class="preference-actions">
+                                <button class="preference-btn">👍 Neutral</button>
+                                <button class="preference-btn">👎</button>
+                            </div>
+                        </div>
+                        <div class="category">
+                            <div class="category-title">Asian</div>
+                            <div class="food-item">Chinese</div>
+                            <div class="food-item">Korean</div>
+                            <div class="food-item">Vietnamese</div>
+                            <div class="preference-actions">
+                                <button class="preference-btn">👍 Neutral</button>
+                                <button class="preference-btn">👎</button>
+                            </div>
+                        </div>
+                        <div class="category">
+                            <div class="category-title">Japanese</div>
+                            <div class="food-item">Sushi</div>
+                            <div class="food-item">Bento Boxes</div>
+                            <div class="food-item">Ramen</div>
+                            <div class="preference-actions">
+                                <button class="preference-btn">👍 Neutral</button>
+                                <button class="preference-btn">👎</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="question">Dietary preferences</div>
+                <p class="subtitle">Please select any dietary restrictions or allergies on your team we should be aware of</p>
+
+                <div class="dietary-options">
+                    <button class="dietary-btn" data-value="vegan">Vegan/Vegetarian</button>
+                    <button class="dietary-btn" data-value="gluten">Gluten Free</button>
+                    <button class="dietary-btn" data-value="nut">Nut Free</button>
+                    <button class="dietary-btn" data-value="halal">Halal</button>
+                    <button class="dietary-btn" data-value="dairy">Dairy Free</button>
+                </div>
+
+                <div class="question">Any additional preferences or dietary restrictions on your team?</div>
+                <input type="text" class="text-input" placeholder="ex. Halal Food">
+
+                <div style="margin-top: 40px;">
+                    <button class="continue-btn" onclick="goToStep(5)">Continue</button>
+                    <button class="skip-btn" onclick="goToStep(5)">Skip for now</button>
+                </div>
+            </div>
+
+            <!-- Step 5 - Thank You -->
+            <div id="step5" class="step hidden">
+                <div class="thank-you-container">
+                    <svg class="email-icon" viewBox="0 0 200 200" fill="none">
+                        <rect x="20" y="50" width="160" height="100" rx="8" fill="#e8e4f3"/>
+                        <rect x="40" y="70" width="120" height="80" rx="4" fill="white"/>
+                        <path d="M40 70 L100 110 L160 70" stroke="#6366f1" stroke-width="3" fill="none"/>
+                        <rect x="80" y="95" width="40" height="30" rx="4" fill="#c4c4c4"/>
+                    </svg>
+                    <h1 class="thank-you-title">Thank you!</h1>
+                    <p class="thank-you-text">Please check your email (including your spam folder) for the link to log in and manage your meal plan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-section">
+            <div class="testimonial-content" id="testimonialContent">
+                <div class="google-reviews">
+                    <span class="stars">★★★★★</span>
+                    <span>🔍 380+ Google reviews</span>
+                </div>
+                <div class="avatar"></div>
+                <p class="testimonial-text" id="testimonialText">
+                    Great company, great concept, and great team all the way around! Help is fast and they are great to deal with! We order for our Calgary AND Vancouver offices - one admin, two provinces - it's just what we wanted!
+                </p>
+                <p class="testimonial-author" id="testimonialAuthor">- Carmen J.</p>
+            </div>
+
+            <div class="info-card hidden" id="infoCard">
+                <svg class="info-illustration" viewBox="0 0 200 150">
+                    <rect x="40" y="20" width="120" height="110" rx="8" fill="#fff"/>
+                    <circle cx="100" cy="50" r="20" fill="#e8e4f3"/>
+                    <rect x="60" y="80" width="80" height="8" rx="4" fill="#e8e4f3"/>
+                    <rect x="60" y="95" width="80" height="8" rx="4" fill="#e8e4f3"/>
+                    <path d="M140 40 Q150 30 160 40 L160 120 Q150 130 140 120 Z" fill="#fbbf24"/>
+                </svg>
+                <h2 class="info-title">Not sure yet?</h2>
+                <p class="info-text">You can fill out your workplace preferences later! Since each person customizes their own meals, your options will automatically be curated based on your team's selection too!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let formData = {
+            teamSize: '',
+            mealType: '',
+            deliveryTime: '',
+            frequency: '',
+            days: [],
+            startDate: '',
+            allowanceType: '',
+            allowanceAmount: 20,
+            creditCard: true,
+            dietary: [],
+            additionalRestrictions: ''
+        };
+
+        const testimonials = [
+            {
+                text: "Great company, great concept, and great team all the way around! Help is fast and they are great to deal with! We order for our Calgary AND Vancouver offices - one admin, two provinces - it's just what we wanted!",
+                author: "Carmen J."
+            },
+            {
+                text: "We love hungerhub at work, lunches are a breeze and everyone gets exactly what they want and stays within budget. The Customer Support there is first class, the entire team is very quick to reply and always happy to help.",
+                author: "Julie R."
+            },
+            {
+                text: "We started using hungerhub this week and are so impressed! They have been quick to respond, timely, thoughtful, and have gone above and beyond in helping us cater office lunches and events. Would highly recommend using their services!",
+                author: "Alyssa P."
+            }
+        ];
+
+        // Step 1: Team size selection
+        document.querySelectorAll('#step1 .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#step1 .option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                formData.teamSize = this.dataset.value;
+                // Button is always enabled, just needs selection to proceed
+            });
+        });
+
+        document.getElementById('step1Btn').addEventListener('click', () => {
+            if (formData.teamSize) {
+                goToStep(2);
+            } else {
+                alert('Please select team size to continue');
+            }
+        });
+
+        // Step 2: Meal type and time selection
+        document.querySelectorAll('#step2 .meal-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('#step2 .meal-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                formData.mealType = this.dataset.value;
+            });
+        });
+
+        document.querySelectorAll('#step2 .time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#step2 .time-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                formData.deliveryTime = this.dataset.value;
+            });
+        });
+
+        document.getElementById('step2Btn').addEventListener('click', () => {
+            if (formData.mealType && formData.deliveryTime) {
+                goToStep(3);
+            } else {
+                alert('Please select meal type and delivery time to continue');
+            }
+        });
+
+        // Step 3: Frequency, days, allowance
+        document.querySelectorAll('#step3 .time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                if (parent.previousElementSibling?.textContent.includes('often')) {
+                    formData.frequency = this.dataset.value;
+                } else if (parent.previousElementSibling?.textContent.includes('allowance')) {
+                    formData.allowanceType = this.dataset.value;
+                }
+                checkStep3Complete();
+            });
+        });
+
+        document.querySelectorAll('#step3 .day-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const day = this.dataset.value;
+                if (formData.days.includes(day)) {
+                    formData.days = formData.days.filter(d => d !== day);
+                } else {
+                    formData.days.push(day);
+                }
+                checkStep3Complete();
+            });
+        });
+
+        const slider = document.getElementById('allowanceSlider');
+        const sliderValue = document.getElementById('sliderValue');
+
+        slider.addEventListener('input', function() {
+            formData.allowanceAmount = this.value;
+            sliderValue.textContent = ' + this.value;
+            const percentage = (this.value / 50) * 100;
+            this.style.background = `linear-gradient(to right, #6366f1 0%, #6366f1 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
+            checkStep3Complete();
+        });
+
+        function toggleCredit() {
+            const toggle = document.getElementById('creditToggle');
+            toggle.classList.toggle('on');
+            toggle.classList.toggle('off');
+            formData.creditCard = toggle.classList.contains('on');
+        }
+
+        function checkStep3Complete() {
+            const complete = formData.frequency && formData.days.length > 0 && formData.allowanceType;
+            document.getElementById('step3Btn').disabled = !complete;
+        }
+
+        document.getElementById('step3Btn').addEventListener('click', () => goToStep(4));
+
+        // Step 4: Food preferences and dietary restrictions
+        document.querySelectorAll('#step4 .dietary-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const dietary = this.dataset.value;
+                if (formData.dietary.includes(dietary)) {
+                    formData.dietary = formData.dietary.filter(d => d !== dietary);
+                } else {
+                    formData.dietary.push(dietary);
+                }
+            });
+        });
+
+        document.querySelectorAll('#step4 .preference-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const buttons = this.parentElement.querySelectorAll('.preference-btn');
+                buttons.forEach(b => b.style.background = 'white');
+                this.style.background = '#f0f0f0';
+            });
+        });
+
+        // Navigation function
+        function goToStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+            document.getElementById('step' + step).classList.remove('hidden');
+            currentStep = step;
+            
+            // Update testimonial or info card
+            if (step === 4) {
+                document.getElementById('testimonialContent').classList.add('hidden');
+                document.getElementById('infoCard').classList.remove('hidden');
+            } else if (step === 5) {
+                document.getElementById('testimonialContent').classList.add('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+            } else {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+                
+                // Rotate testimonials
+                const testimonialIndex = (step - 1) % testimonials.length;
+                document.getElementById('testimonialText').textContent = testimonials[testimonialIndex].text;
+                document.getElementById('testimonialAuthor').textContent = '- ' + testimonials[testimonialIndex].author;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Carousel dots functionality for step 4
+        let carouselIndex = 0;
+        document.querySelectorAll('#step4 .dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                document.querySelectorAll('#step4 .dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                carouselIndex = index;
+            });
+        });
+
+        // Initialize
+        document.getElementById('step1').classList.remove('hidden');
+    </script>
+</body>
+</html>
