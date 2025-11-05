@@ -1,327 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Order Form</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Order Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+/* PROGRESS BAR */
+.progress-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  height: 5px;
+  z-index: 1000;
+}
+.progress-bar {
+  height: 5px;
+  background: linear-gradient(90deg, #fff, #888);
+  width: 0%;
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  transition: width 0.3s ease;
+}
 
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: #ffffff;
-            width: 0%;
-            transition: width 0.5s ease;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(255,255,255,0.5);
-        }
+/* QUESTION WRAPPER */
+.question-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.question-container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.question-content {
+  width: 100%;
+  max-width: 700px;
+}
+.question-number {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.question-text {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
 
-        .question-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+/* INPUT FIELDS */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+.mui-input {
+  width: 100%;
+  padding: 20px 24px;
+  font-size: 18px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.mui-input:focus {
+  border-color: #fff;
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+}
+.mui-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+textarea.mui-input {
+  min-height: 120px;
+  resize: vertical;
+}
 
-        .question-container.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* OPTIONS */
+.options-container {
+  display: grid;
+  gap: 16px;
+}
+.option-btn {
+  padding: 20px 24px;
+  font-size: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-weight: 500;
+  position: relative;
+}
+.option-btn:hover {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.12);
+  transform: translateX(6px);
+}
+.option-btn.selected {
+  border-color: #fff;
+  background: rgba(255,255,255,0.15);
+}
 
-        .question-content {
-            max-width: 700px;
-            width: 100%;
-        }
+/* CONTINUE BUTTON */
+.continue-btn {
+  margin-top: 30px;
+  padding: 16px 40px;
+  font-size: 16px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+.continue-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+}
 
-        .question-number {
-            font-size: 13px;
-            opacity: 0.5;
-            margin-bottom: 16px;
-            letter-spacing: 2px;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
+/* COMPLETION SCREEN */
+.completion-screen {
+  display: none;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+.completion-screen.active {
+  display: flex;
+}
+.completion-content {
+  max-width: 600px;
+}
+.checkmark {
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+.checkmark .material-icons {
+  color: #000;
+  font-size: 58px;
+}
+.completion-text {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.completion-subtext {
+  font-size: 18px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
 
-        .question-text {
-            font-size: 38px;
-            font-weight: 600;
-            margin-bottom: 50px;
-            line-height: 1.3;
-            letter-spacing: -0.5px;
-        }
-
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .mui-input {
-            width: 100%;
-            padding: 20px 24px;
-            font-size: 18px;
-            border: 2px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.03);
-            color: #ffffff;
-            border-radius: 12px;
-            outline: none;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-        }
-
-        .mui-input:focus {
-            border-color: #ffffff;
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
-        }
-
-        .mui-input::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
-        textarea.mui-input {
-            min-height: 140px;
-            resize: vertical;
-            line-height: 1.6;
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        .options-container {
-            display: grid;
-            gap: 16px;
-        }
-
-        .option-btn {
-            padding: 24px 28px;
-            font-size: 18px;
-            background: rgba(255,255,255,0.03);
-            border: 2px solid rgba(255,255,255,0.15);
-            color: #ffffff;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: left;
-            position: relative;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            overflow: hidden;
-        }
-
-        .option-btn::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: #ffffff;
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .option-btn:hover {
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.08);
-            transform: translateX(8px);
-        }
-
-        .option-btn.selected {
-            background: rgba(255,255,255,0.12);
-            border-color: #ffffff;
-        }
-
-        .option-btn.selected::before {
-            transform: scaleY(1);
-        }
-
-        .continue-btn {
-            margin-top: 40px;
-            padding: 18px 48px;
-            font-size: 16px;
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            opacity: 0;
-            pointer-events: none;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .continue-btn.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(255,255,255,0.3);
-        }
-
-        .continue-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .completion-screen {
-            min-height: 100vh;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .completion-screen.active {
-            display: flex;
-        }
-
-        .completion-content {
-            max-width: 600px;
-        }
-
-        .checkmark {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 40px;
-            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .checkmark .material-icons {
-            font-size: 60px;
-            color: #000000;
-            animation: fadeIn 0.3s ease 0.4s both;
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .completion-text {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .completion-subtext {
-            font-size: 18px;
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        input[type="date"]::-webkit-calendar-picker-indicator,
-        input[type="time"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .time-input-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .question-text {
-                font-size: 28px;
-            }
-
-            .mui-input,
-            .option-btn {
-                font-size: 16px;
-                padding: 18px 20px;
-            }
-
-            .time-input-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .helper-text {
-            font-size: 14px;
-            opacity: 0.5;
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .helper-text .material-icons {
-            font-size: 16px;
-        }
-    </style>
+/* RESPONSIVENESS */
+@media (max-width: 1024px) {
+  .question-text { font-size: 30px; }
+  .mui-input, .option-btn { font-size: 16px; padding: 16px 20px; }
+}
+@media (max-width: 768px) {
+  .question-text { font-size: 26px; }
+  .progress-bar-container { height: 4px; }
+  .mui-input, .option-btn { font-size: 15px; padding: 14px 18px; }
+  .continue-btn { width: 100%; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .question-text { font-size: 22px; }
+  .mui-input, .option-btn { font-size: 14px; }
+  .checkmark { width: 70px; height: 70px; }
+  .checkmark .material-icons { font-size: 48px; }
+}
+</style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <div id="questionsWrapper"></div>
+<div class="progress-bar-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-    <div class="completion-screen" id="completionScreen">
-        <div class="completion-content">
-            <div class="checkmark">
-                <span class="material-icons">check</span>
-            </div>
-            <div class="completion-text">Order Received!</div>
-            <div class="completion-subtext">Thank you for your order. We'll prepare everything fresh and have it ready for you. You'll receive a confirmation email shortly.</div>
-        </div>
+<div id="questionsWrapper"></div>
+
+<div class="completion-screen" id="completionScreen">
+  <div class="completion-content">
+    <div class="checkmark">
+      <span class="material-icons">check</span>
     </div>
+    <div class="completion-text">Order Received!</div>
+    <div class="completion-subtext">
+      Thank you for your order! We'll prepare everything fresh and confirm shortly.
+    </div>
+  </div>
+</div>
 
     <script>
         const questions = [
@@ -417,147 +329,97 @@
             }
         ];
 
-        const answers = {};
-        let currentQuestion = 0;
+       
+const answers = {};
+let currentQuestion = 0;
 
-        function getTomorrowDate() {
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            return tomorrow.toISOString().split('T')[0];
-        }
+function getTomorrow() {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return d.toISOString().split('T')[0];
+}
 
-        function initQuestions() {
-            const wrapper = document.getElementById('questionsWrapper');
-            
-            questions.forEach((q, index) => {
-                const container = document.createElement('div');
-                container.className = 'question-container';
-                container.id = `question-${index}`;
-                
-                let inputHTML = '';
-                
-                if (q.type === 'options') {
-                    inputHTML = `
-                        <div class="options-container">
-                            ${q.options.map((opt, i) => `
-                                <button class="option-btn" data-value="${opt}" onclick="selectOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}')">
-                                    ${opt}
-                                </button>
-                            `).join('')}
-                        </div>
-                    `;
-                } else if (q.type === 'date') {
-                    inputHTML = `
-                        <div class="input-wrapper">
-                            <input type="date" class="mui-input" id="input-${index}" min="${getTomorrowDate()}" 
-                                   onchange="handleInput(${index})" />
-                            ${q.helper ? `<div class="helper-text"><span class="material-icons">info</span>${q.helper}</div>` : ''}
-                        </div>
-                    `;
-                } else if (q.type === 'time') {
-                    inputHTML = `
-                        <div class="input-wrapper">
-                            <input type="time" class="mui-input" id="input-${index}" 
-                                   onchange="handleInput(${index})" />
-                            ${q.helper ? `<div class="helper-text"><span class="material-icons">info</span>${q.helper}</div>` : ''}
-                        </div>
-                    `;
-                } else if (q.type === 'textarea') {
-                    inputHTML = `
-                        <div class="input-wrapper">
-                            <textarea class="mui-input" id="input-${index}" placeholder="${q.placeholder}" 
-                                      oninput="handleInput(${index})"></textarea>
-                        </div>
-                    `;
-                } else {
-                    inputHTML = `
-                        <div class="input-wrapper">
-                            <input type="${q.type}" class="mui-input" id="input-${index}" placeholder="${q.placeholder}" 
-                                   oninput="handleInput(${index})" />
-                            ${q.icon ? `<span class="material-icons input-icon">${q.icon}</span>` : ''}
-                        </div>
-                    `;
-                }
-                
-                container.innerHTML = `
-                    <div class="question-content">
-                        <div class="question-number">Question ${index + 1} → ${questions.length}</div>
-                        <div class="question-text">${q.question}</div>
-                        ${inputHTML}
-                        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${index}" onclick="nextQuestion()">
-                            Continue
-                            <span class="material-icons">arrow_downward</span>
-                        </button>` : ''}
-                    </div>
-                `;
-                
-                wrapper.appendChild(container);
-            });
-            
-            showQuestion(0);
-        }
+function initQuestions() {
+  const wrapper = document.getElementById('questionsWrapper');
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-container';
+    div.id = `question-${i}`;
 
-        function showQuestion(index) {
-            const allQuestions = document.querySelectorAll('.question-container');
-            allQuestions.forEach(q => q.classList.remove('active'));
-            
-            setTimeout(() => {
-                document.getElementById(`question-${index}`).classList.add('active');
-                document.getElementById(`question-${index}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-            
-            updateProgress();
-        }
+    let inputHTML = '';
+    if (q.type === 'options') {
+      inputHTML = `<div class="options-container">${q.options.map((opt, j) =>
+        `<button class="option-btn" data-value="${opt}" onclick="selectOption(${i}, '${opt}')">${opt}</button>`
+      ).join('')}</div>`;
+    } else {
+      const inputType = q.type === 'textarea' ? 'textarea' : 'input';
+      if (q.type === 'date')
+        inputHTML = `<input type="date" class="mui-input" id="input-${i}" min="${getTomorrow()}" onchange="handleInput(${i})">`;
+      else if (q.type === 'time')
+        inputHTML = `<input type="time" class="mui-input" id="input-${i}" onchange="handleInput(${i})">`;
+      else
+        inputHTML = `<input type="${q.type}" class="mui-input" id="input-${i}" placeholder="${q.placeholder || ''}" oninput="handleInput(${i})">`;
+    }
 
-        function updateProgress() {
-            const progress = ((currentQuestion) / questions.length) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
+    div.innerHTML = `
+      <div class="question-content">
+        <div class="question-number">Question ${i + 1} of ${questions.length}</div>
+        <div class="question-text">${q.question}</div>
+        <div class="input-wrapper">${inputHTML}</div>
+        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${i}" onclick="nextQuestion()">Continue <span class="material-icons">arrow_downward</span></button>` : ''}
+      </div>`;
+    wrapper.appendChild(div);
+  });
+  showQuestion(0);
+}
 
-        function handleInput(index) {
-            const input = document.getElementById(`input-${index}`);
-            const continueBtn = document.getElementById(`continue-${index}`);
-            
-            if (input.value.trim() !== '') {
-                continueBtn.classList.add('visible');
-                answers[index] = input.value;
-                
-                if (input.type === 'date' || input.type === 'time') {
-                    setTimeout(() => nextQuestion(), 600);
-                }
-            } else {
-                continueBtn.classList.remove('visible');
-            }
-        }
+function showQuestion(index) {
+  document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+  const q = document.getElementById(`question-${index}`);
+  q.classList.add('active');
+  q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  updateProgress();
+}
 
-        function selectOption(questionIndex, optionIndex, value) {
-            const buttons = document.querySelectorAll(`#question-${questionIndex} .option-btn`);
-            buttons.forEach(btn => btn.classList.remove('selected'));
-            buttons[optionIndex].classList.add('selected');
-            
-            answers[questionIndex] = value;
-            
-            setTimeout(() => nextQuestion(), 600);
-        }
+function handleInput(i) {
+  const input = document.getElementById(`input-${i}`);
+  const btn = document.getElementById(`continue-${i}`);
+  if (input.value.trim()) {
+    btn.classList.add('visible');
+    answers[i] = input.value;
+  } else {
+    btn.classList.remove('visible');
+  }
+}
 
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion(currentQuestion);
-            } else {
-                completeQuestionnaire();
-            }
-        }
+function selectOption(i, value) {
+  const opts = document.querySelectorAll(`#question-${i} .option-btn`);
+  opts.forEach(o => o.classList.remove('selected'));
+  event.target.classList.add('selected');
+  answers[i] = value;
+  setTimeout(nextQuestion, 400);
+}
 
-        function completeQuestionnaire() {
-            document.getElementById('questionsWrapper').style.display = 'none';
-            document.getElementById('completionScreen').classList.add('active');
-            document.getElementById('progressBar').style.width = '100%';
-            
-            console.log('Restaurant Order Details:', answers);
-        }
+function nextQuestion() {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion(currentQuestion);
+  } else completeForm();
+}
 
-        initQuestions();
-    </script>
+function updateProgress() {
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+}
+
+function completeForm() {
+  document.getElementById('questionsWrapper').style.display = 'none';
+  document.getElementById('completionScreen').classList.add('active');
+  document.getElementById('progressBar').style.width = '100%';
+  console.log('Collected answers:', answers);
+}
+
+initQuestions();
+</script>
 </body>
 </html>

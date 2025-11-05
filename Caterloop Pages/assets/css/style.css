@@ -472,9 +472,9 @@ hr {
     border: 1px solid #3a5bcc;
     color: #464d65;
     background: none;
-    border-radius: 5px;
+    border-radius: 35px;
     text-transform: capitalize;
-    padding: 19px 47px;
+    padding: 19px 20px;
     -moz-user-select: none;
     cursor: pointer;
     display: inline-block;
@@ -2664,11 +2664,11 @@ hr {
 }
 
 .slider-height {
-    background-image: url(../img/hero/h1_hero.png);
-    min-height: 900px;
+    /* background-image: url(../img/hero/h1_hero.png); */
+    min-height: 650px;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover
+    background-size: cover;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -2760,7 +2760,7 @@ hr {
 }
 
 .slider-area .hero__caption h1 {
-    font-size: 87px;
+    font-size: 50px;
     font-weight: 700;
     margin-bottom: 14px;
     line-height: 1.2;
@@ -2769,7 +2769,7 @@ hr {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .slider-area .hero__caption h1 {
-        font-size: 60px;
+        font-size: 40px;
         line-height: 1.2
     }
 }
@@ -3031,13 +3031,20 @@ hr {
 }
 
 .about-area2 .about-img img {
-    width: 100%
+    width: 100%;
+    height: 600px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 20px;
 }
 
 @media (max-width: 575px) {
     .about-caption {
         margin-bottom: 35px
     }
+    .about-area2 .about-img img {
+    width: 100%;
+    height: 100%;
+}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -3487,7 +3494,7 @@ hr {
 .booking-area .booking-wrap .nice-select {
     color: #9d9d9d;
     background-color: #f9f9f9;
-    border-radius: 5px;
+    border-radius: 10px;
     box-sizing: border-box;
     padding-left: 49px;
     padding-right: 45px;
@@ -3495,7 +3502,8 @@ hr {
     line-height: 69px;
     border: 0;
     height: 65px;
-    width: 100%
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .booking-area .booking-wrap .nice-select::after {
@@ -3537,9 +3545,11 @@ hr {
     color: #9d9d9d;
     background-color: #f9f9f9;
     border: 0;
+    border-radius: 10px;
     height: 65px;
     width: 100%;
-    padding-left: 50px
+    padding-left: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @media (max-width: 575px) {
@@ -3566,40 +3576,42 @@ hr {
 }
 
 .our-services .single-services {
-    padding: 79px 23px;
+    padding: 20px 23px;
     -webkit-transition: all .4s ease-out 0s;
     -moz-transition: all .4s ease-out 0s;
     -ms-transition: all .4s ease-out 0s;
     -o-transition: all .4s ease-out 0s;
-    transition: all .4s ease-out 0s
+    transition: all .4s ease-out 0s;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .our-services .single-services {
-        padding: 46px 23px
+        padding: 30px 23px
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .our-services .single-services {
-        padding: 56px 32px
+        padding: 30px 32px
     }
 }
 
 @media (max-width: 575px) {
     .our-services .single-services {
-        padding: 47px 19px
+        padding: 30px 19px
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .our-services .single-services {
-        padding: 47px 19px
+        padding: 30px 19px
     }
 }
 
 .our-services .single-services:hover {
-    box-shadow: 0px 10px 30px 0px rgba(133, 66, 189, 0.1)
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .our-services .single-services .services-ion span {
@@ -5472,7 +5484,8 @@ hr {
 @media (max-width: 767px) {
     .gj-picker.gj-picker-md.timepicker {
         width: 310px;
-        left: 6px !important
+    left: 32.5px !important;
+   
     }
 }
 
@@ -6614,7 +6627,8 @@ del {
 .section_caterloop{
     background-color: #f7f9ff;
    padding: 8rem 0rem;
-
+ background-color: rgba(238, 234, 234, 0.473);
+  background-blend-mode: lighten;
     /* display: block; */
 }
 .section_caterloop .email_btn{

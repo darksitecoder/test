@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaterLoop Navbar</title>
+
+
+		<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="author" content="Untree.co">
+	<link rel="shortcut icon" href="favicon.png">
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="bootstrap, bootstrap5" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+	<!-- <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+	<link rel="stylesheet" href="assets/css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="assets/css/themify-icons.css">
+	<link rel="stylesheet" href="assets/css/slick.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css"> -->
+	<link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background-color: #3a5bcc;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-link::after {
+            content: '▼';
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .nav-link::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            border-left-color: #3a5bcc;
+            padding-left: 2rem;
+            color: #3a5bcc;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #3a5bcc;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Demo Content */
+        .content {
+            max-width: 1200px;
+			width: 100%;
+            margin: 3rem auto;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        #login .dropdown {
+            min-width: 150px;
+        }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background: white;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-link {
+                width: 100%;
+                padding: 1rem;
+                justify-content: space-between;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                box-shadow: none;
+                border-radius: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease;
+                margin-top: 0;
+                background: #f8f9fa;
+            }
+
+            .nav-item.active .dropdown {
+                max-height: 500px;
+            }
+
+            .nav-item.active .nav-link::after {
+                transform: rotate(180deg);
+            }
+
+            .dropdown-item {
+                padding: 0.8rem 1.5rem 0.8rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes slide{
+  from{
+    transform:translateX(0) ;
+    
+  }
+  to{
+    transform:translateX(-100%) ;
+  
+  }
+}
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  background: #000;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos:before,
+.logos:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0), rgb(69, 69, 69));
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0), rgb(69, 69, 69));
+}
+
+.logos-slide {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 200s linear infinite;
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 40px;
+  vertical-align: middle;
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+/* Keyframes for smooth infinite scroll */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.faq-item {
+    background: white;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1F2937;
+}
+
+.faq-icon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    color: #5B5FE3;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 28px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 28px 24px 68px;
+}
+
+
+.popular img{
+width:100%;
+position: relative;
+transition: 0.5s ease-in-out;
+height: 100%;
+}
+.popular img:hover{
+    transform: scale(1.05) rotate(3deg);
+}
+.popular .images{
+    width: 100%;
+    height: 250px;
+  border-radius: 12px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+}
+.popular .images p{
+    position: absolute;
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    bottom: -20px;
+    left: 0px;
+    width: 100%;
+    padding: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--white);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background: linear-gradient(92.22deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+
+}
+.labeled{
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0.5rem 1rem;
+}
+.labeled p{
+    margin: 0px !important;
+}
+.hero .hero_details h1{
+    font-weight: 700;
+}
+.hero .hero_details:nth-child(1) p{
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+}
+@media (max-width: 575px) {
+    .border-btn {
+        display: block;
+    }
+}
+/* .meal_plan .images{
+    display: flex;
+    justify-content: end;
+} */
+.meal_plan img{
+    width: 70%;
+    
+}
+.meal_plan .details span{
+    color:#3a5bcc;
+    font-size: 22px;
+    font-weight: 700;
+
+}
+.order_features h3{
+    font-size: 2.7rem;
+}
+.order_features{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.order_features h3{
+    /* font-size: 2.7em; */
+    
+}
+.order_features p{
+    /* font-size: 1.2em; */
+
+}
+
+.order_features img{
+    width: 300px;
+    margin: auto;
+    height: 250px;
+}
+
+.meal_plan ul li{
+    list-style-type: disc;
+    padding: 10px 0px;
+}
+
+@media (max-width: 767px) {
+    .meal_plan img{
+    width: 100%;
+}
+.order_features h3{
+    font-size: 1.5em;
+    
+}
+.labeled p{
+    font-size: 12px;
+}
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CaterLoop</div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item" id="offices">
+                    <a href="#" class="nav-link">For Offices</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Office Meal Programs</a>
+                        <a href="#" class="dropdown-item">On Demand Catering</a>
+                        <a href="#" class="dropdown-item">Managed Catering + Events</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="restaurants">
+                    <a href="#" class="nav-link">For Restaurants</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Restaurant Sign In</a>
+                        <a href="#" class="dropdown-item">Sign Up Your Restaurant</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="about">
+                    <a href="#" class="nav-link">About Us</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">About CaterLoop</a>
+                        <a href="#" class="dropdown-item">Blog</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item" id="login">
+                    <a href="#" class="nav-link">Login</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Logout</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+
+
+    <main>
+
+        <section class=" pt-150 ">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-7 d-flex align-items-center">
+                    <div>
+                    <h1>Managed Catering + Events</h1>
+                    <p class="py-3">Simplify and improve your corporate catering with access to hundreds of restaurants, caterers and options that are only one click, email or phone call away.</p>
+                     <div class="hero__btn">
+                     <a href="#" class="btn hero-btn fw-bold">Tell us about your event</a>
+                     </div>
+                     </div>
+                </div>
+                <div class="col-lg-5"><img src="office-meal/hero.webp" alt="" style="width: 100%;"></div>
+            </div>
+            </div>
+        </section>
+    
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <div class="labeled d-flex justify-content-around align-items-center my-2">
+                            <img src="office-meal/canada.webp" alt="" width="20px" height="20px">
+                            <p>Delivery from more than 350 local restaurants</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero_details text-center">
+                <h1 class="pt-5 text-center">Get access  to your city’s best caterers & restaurants </h1>
+                <p class="fw-bolder text-center">Order individually. Eat as a team.</p>
+                <p class="text-center">Empower your employees with the best possible way to order lunches as part of a meal plan solution for your office.</p>
+                     <img src="/Caterloop Pages/office-meal/mockup.webp" alt="" style="width: 30%;">
+
+                     <div class="hero__btn pt-4">
+                     <a href="#" class="btn hero-btn">Tell us about your event</a>
+                     </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="meal_plan py-5">
+            <div class="container">
+                <div class="row py-5">
+                   
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="details">
+                        <h3 class="py-3">One contact, one vendor. For all your needs.</h3>
+                        <ul>
+                            <li>Reduce the headache of managing multiple relationships and the back and forth communication patterns when arranging for a catered corporate event.</li>
+                            <li>Work together with a knowledgable account manager that supports and works alongside to make every event a success.</li>
+                            <li>Mixing our technology with human touch to provide you with the best possible experience.</li>
+                        </ul>
+                    </div>
+                    </div>
+                     <div class="col-lg-6">
+                        <div class="images d-flex justify-content-end"><img src="/Caterloop Pages/office-meal/one_contact.webp" alt=""></div></div>
+                </div>
+            </div>
+        </section>
+
+      
+
+<section class="py-5">
+    
+<div class="section_caterloop" style=" background-image: url(assets/img/hero/banner.png); background-position: center; background-repeat: no-repeat; background-size: contain;">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 col-md-12"></div>
+        <div class="col-sm-12 col-lg-6 col-md-12">
+            <div class="details ">
+                <h3>Not sure which solution is the right one for you?</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis laborum magni ut molestias? Error voluptas ipsam, modi excepturi doloribus vero.</p>
+                <div class="email_btn px-4">
+                    <input type="email" name="" id="" placeholder="Write Your Email">
+                    <div class="hero__btn">
+                     <a href="#" class="btn hero-btn">Book a Call</a>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+
+    </main>
+	
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const overlay = document.getElementById('overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        // Close menu when overlay is clicked
+        overlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            navItems.forEach(item => item.classList.remove('active'));
+        });
+
+        // Mobile dropdown toggle
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    
+                    // Close other dropdowns
+                    navItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    item.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                navItems.forEach(item => item.classList.remove('active'));
+            }
+        });
+
+const copy = document.querySelector(".logos-slide").cloneNode(true);
+  document.querySelector(".logos").appendChild(copy);
+
+
+
+  
+function toggleFaq(element) {
+    const faqItem = element.closest('.faq-item');
+    const allFaqs = document.querySelectorAll('.faq-item');
+    
+    allFaqs.forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+        }
+    });
+    
+    faqItem.classList.toggle('active');
+}
+
+    </script>
+
+     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <!-- <script src="./assets/js/jquery.slicknav.min.js"></script> -->
+
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    
+    <script src="./assets/js/main.js"></script>
+    
+</body>
+</html>

@@ -6,7 +6,6 @@
     <title>Restaurant Order Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         * {
             margin: 0;
@@ -18,63 +17,37 @@
             font-family: 'Inter', sans-serif;
             background: #000000;
             color: #ffffff;
-            overflow: hidden;
             overflow-x: hidden;
-  scroll-behavior: smooth;
         }
 
-        .progress-container {
+        .progress-bar {
             position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #ffffff;
+            width: 0%;
+            transition: width 0.5s ease;
             z-index: 1000;
-            padding: 0 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 600px;
-        }
-
-        .progress-dash {
-            width: 12px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            transition: all 0.4s ease;
-        }
-
-        .progress-dash.completed {
-            background: #4CAF50;
-            box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
-        }
-
-        .questions-wrapper {
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
         }
 
         .question-container {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 20px 60px;
-            position: absolute;
-            /* width: 100%; */
+            padding: 60px 20px;
+            width: 100%;
             opacity: 0;
             transform: translateY(50px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
             pointer-events: none;
         }
 
         .question-container.active {
             opacity: 1;
             transform: translateY(0);
-            pointer-events: all;
-            position: relative;
         }
 
         .question-content {
@@ -99,68 +72,48 @@
             letter-spacing: -0.5px;
         }
 
-        .input-field {
-            margin-bottom: 20px;
+        .input-wrapper {
             position: relative;
+            margin-bottom: 20px;
         }
 
-        .input-field input,
-        .input-field textarea.materialize-textarea {
-            color: #ffffff !important;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
-            font-size: 18px !important;
-            padding-left: 3rem !important;
-        }
-
-        .input-field input:focus,
-        .input-field textarea.materialize-textarea:focus {
-            border-bottom: 2px solid #ffffff !important;
-            box-shadow: 0 1px 0 0 #ffffff !important;
-        }
-
-        .input-field label {
-            color: rgba(255, 255, 255, 0.5) !important;
-            font-size: 16px !important;
-            left: 3rem !important;
-        }
-
-        .input-field label.active {
-            color: #ffffff !important;
-        }
-
-        .input-field .prefix {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 24px;
-        }
-
-        .input-field .prefix.active {
+        .mui-input {
+            width: 100%;
+            padding: 20px 24px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.03);
             color: #ffffff;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
         }
 
-        .input-field input.valid,
-        .input-field textarea.materialize-textarea.valid {
-            border-bottom: 2px solid #4CAF50 !important;
-            box-shadow: 0 1px 0 0 #4CAF50 !important;
+        .mui-input:focus {
+            border-color: #ffffff;
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
         }
 
-        .input-field input.invalid,
-        .input-field textarea.materialize-textarea.invalid {
-            border-bottom: 2px solid #F44336 !important;
-            box-shadow: 0 1px 0 0 #F44336 !important;
+        .mui-input::placeholder {
+            color: rgba(255,255,255,0.4);
         }
 
-        .helper-text {
-            color: rgba(255, 255, 255, 0.5) !important;
-            font-size: 13px;
-            margin-left: 3rem;
+        textarea.mui-input {
+            min-height: 140px;
+            resize: vertical;
+            line-height: 1.6;
         }
 
-        .helper-text[data-error] {
-            color: #F44336 !important;
-        }
-
-        .helper-text[data-success] {
-            color: #4CAF50 !important;
+        .input-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .options-container {
@@ -191,7 +144,7 @@
             top: 0;
             height: 100%;
             width: 4px;
-            background: #4CAF50;
+            background: #ffffff;
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
@@ -203,8 +156,8 @@
         }
 
         .option-btn.selected {
-            background: rgba(76, 175, 80, 0.15);
-            border-color: #4CAF50;
+            background: rgba(255,255,255,0.12);
+            border-color: #ffffff;
         }
 
         .option-btn.selected::before {
@@ -247,13 +200,12 @@
         }
 
         .completion-screen {
-            height: 100vh;
+            min-height: 100vh;
             display: none;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 20px;
-            overflow: hidden;
         }
 
         .completion-screen.active {
@@ -268,7 +220,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: #4CAF50;
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -278,7 +230,7 @@
 
         .checkmark .material-icons {
             font-size: 60px;
-            color: #ffffff;
+            color: #000000;
             animation: fadeIn 0.3s ease 0.4s both;
         }
 
@@ -319,6 +271,13 @@
         input[type="time"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
             cursor: pointer;
+            font-size: 18px;
+        }
+
+        .time-input-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
         @media (max-width: 768px) {
@@ -326,50 +285,33 @@
                 font-size: 28px;
             }
 
-            .progress-container {
-                top: 20px;
-                gap: 6px;
+            .mui-input,
+            .option-btn {
+                font-size: 16px;
+                padding: 18px 20px;
             }
 
-            .progress-dash {
-                width: 10px;
-                height: 3px;
+            .time-input-wrapper {
+                grid-template-columns: 1fr;
             }
         }
 
-        .error-message {
-            color: #F44336;
-            font-size: 13px;
-            margin-top: 8px;
-            margin-left: 3rem;
-            display: none;
+        .helper-text {
+            font-size: 14px;
+            opacity: 0.5;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .error-message.show {
-            display: block;
+        .helper-text .material-icons {
+            font-size: 16px;
         }
-
-        /* RESPONSIVENESS */
-@media (max-width: 1024px) {
-  .question-text { font-size: 30px; }
-  .mui-input, .option-btn { font-size: 16px; padding: 16px 20px; }
-}
-@media (max-width: 768px) {
-  .question-text { font-size: 26px; }
-  .progress-bar-container { height: 4px; }
-  .mui-input, .option-btn { font-size: 15px; padding: 14px 18px; }
-  .continue-btn { width: 100%; justify-content: center; }
-}
-@media (max-width: 480px) {
-  .question-text { font-size: 22px; }
-  .mui-input, .option-btn { font-size: 14px; }
-  .checkmark { width: 70px; height: 70px; }
-  .checkmark .material-icons { font-size: 48px; }
-}
     </style>
 </head>
 <body>
-    <div class="progress-container" id="progressContainer"></div>
+    <div class="progress-bar" id="progressBar"></div>
     
     <div class="questions-wrapper" id="questionsWrapper"></div>
 
@@ -383,20 +325,35 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         const questions = [
-            { type: 'text', question: 'What\'s your name?', label: 'Enter your full name', icon: 'person', required: true },
-            { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
-            { type: 'tel', question: 'What\'s your phone number?', label: '+1 (555) 000-0000', icon: 'phone', required: true, validation: 'phone' },
+             { type: 'date', question: 'When would you like to visit us?', helper: 'Select a date from tomorrow onwards' },
+              { 
+                type: 'options', 
+                question: 'Type of Service',
+                options: ['Hors d oeuves / appetizers', 'Shared meal treys', 'Individual meal boxes', 'Others']
+            },
+            { type: 'text', question: 'How many people are looking to provide catering for ?', placeholder: 'Number of guests', icon: 'group' },
+           { 
+                type: 'options', 
+                question: 'Budget',
+                options: ['I have a per person budget', 'I have total budget']
+            },
+            { type: 'text', question: 'What is your total catering budget ?', placeholder: 'Enter Your budget', icon: 'money' },
+
+
+            
+            { type: 'text', question: 'What\'s your name?', placeholder: 'Enter your full name', icon: 'person' },  
+            { type: 'email', question: 'What\'s your email address?', placeholder: 'name@example.com', icon: 'email' },
+            { type: 'tel', question: 'What\'s your phone number?', placeholder: '+1 (555) 000-0000', icon: 'phone' },
             { 
                 type: 'options', 
                 question: 'Is this for dine-in or takeaway?',
                 options: ['Dine-in', 'Takeaway', 'Delivery', 'Curbside Pickup', 'Reserve Table']
             },
-            { type: 'date', question: 'When would you like to visit us?', label: 'Select date', helper: 'Select a date from tomorrow onwards', icon: 'event', required: true },
-            { type: 'time', question: 'What time works best for you?', label: 'Select time', helper: 'We\'re open from 11:00 AM to 11:00 PM', icon: 'access_time', required: true },
-            { type: 'number', question: 'How many people will be joining?', label: 'Number of guests', icon: 'group', required: true },
+           
+            { type: 'time', question: 'What time works best for you?', helper: 'We\'re open from 11:00 AM to 11:00 PM' },
+           
             { 
                 type: 'options', 
                 question: 'What type of cuisine are you interested in?',
@@ -407,12 +364,8 @@
                 question: 'Any dietary preferences?',
                 options: ['No Preference', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Halal']
             },
-            { 
-                type: 'options', 
-                question: 'What\'s your preferred seating?',
-                options: ['Indoor', 'Outdoor Patio', 'Bar Area', 'Private Room', 'Window Side']
-            },
-            { type: 'text', question: 'Do you have a special occasion?', label: 'Birthday, Anniversary, etc.', icon: 'celebration' },
+            
+            { type: 'text', question: 'Do you have a special occasion?', placeholder: 'Birthday, Anniversary, etc.', icon: 'celebration' },
             { 
                 type: 'options', 
                 question: 'Would you like to pre-order appetizers?',
@@ -423,19 +376,18 @@
                 question: 'Preferred beverage type?',
                 options: ['Soft Drinks', 'Wine', 'Beer', 'Cocktails', 'Non-Alcoholic']
             },
-            { type: 'text', question: 'Any specific dishes you\'d like to try?', label: 'Let us know your preferences', icon: 'restaurant_menu' },
+            { type: 'text', question: 'Any specific dishes you\'d like to try?', placeholder: 'Let us know your preferences', icon: 'restaurant_menu' },
             { 
                 type: 'options', 
                 question: 'Spice level preference?',
                 options: ['Mild', 'Medium', 'Hot', 'Extra Hot', 'No Spice']
             },
-            { type: 'textarea', question: 'Any food allergies or restrictions we should know about?', label: 'Please list any allergies or dietary restrictions...', icon: 'warning' },
+            { type: 'textarea', question: 'Any food allergies or restrictions we should know about?', placeholder: 'Please list any allergies or dietary restrictions...' },
             { 
                 type: 'options', 
                 question: 'Would you like a dessert recommendation?',
                 options: ['Yes, something sweet', 'Yes, something light', 'Chocolate based', 'Fruit based', 'No dessert']
             },
-            { type: 'text', question: 'Preferred chef\'s specialty?', label: 'Enter chef name or specialty', icon: 'restaurant' },
             { 
                 type: 'options', 
                 question: 'How did you hear about us?',
@@ -446,31 +398,27 @@
                 question: 'Is this your first visit?',
                 options: ['Yes, first time', 'Second visit', 'Regular customer', 'Special occasion return', 'Been here many times']
             },
-            { type: 'text', question: 'Do you have any discount or promo code?', label: 'Enter code if available', icon: 'local_offer' },
+            { type: 'text', question: 'Do you have any discount or promo code?', placeholder: 'Enter code if available', icon: 'local_offer' },
             { 
                 type: 'options', 
                 question: 'Preferred music ambiance?',
                 options: ['Jazz', 'Classical', 'Pop', 'Quiet/Minimal', 'Live Performance']
             },
-            { type: 'text', question: 'Any special table decorations needed?', label: 'Flowers, candles, etc.', icon: 'local_florist' },
-            { 
-                type: 'options', 
-                question: 'Would you like a window with a view?',
-                options: ['Yes, if available', 'Yes, willing to wait', 'No preference', 'Indoor preferred', 'Surprise me']
-            },
-            { type: 'textarea', question: 'Any special requests for the chef?', label: 'Special preparations, extra ingredients, etc...', icon: 'notes' },
+            { type: 'text', question: 'Any special table decorations needed?', placeholder: 'Flowers, candles, etc.', icon: 'emoji_nature' },
+           
+            { type: 'textarea', question: 'Any special requests for the chef?', placeholder: 'Special preparations, extra ingredients, etc...' },
             { 
                 type: 'options', 
                 question: 'Preferred payment method?',
                 options: ['Credit/Debit Card', 'Cash', 'Digital Wallet', 'Split Bill', 'Corporate Account']
             },
-            { type: 'text', question: 'Would you like valet parking?', label: 'Yes or No', icon: 'local_parking' },
+            { type: 'text', question: 'Would you like valet parking?', placeholder: 'Yes or No', icon: 'local_parking' },
             { 
                 type: 'options', 
                 question: 'Join our loyalty program?',
                 options: ['Yes, sign me up', 'Already a member', 'Tell me more', 'Maybe next time', 'No, thank you']
             },
-            { type: 'textarea', question: 'Any additional comments or special arrangements?', label: 'Anything else we should know to make your experience perfect...', icon: 'comment' },
+            { type: 'textarea', question: 'Any additional comments or special arrangements?', placeholder: 'Anything else we should know to make your experience perfect...' },
             { 
                 type: 'options', 
                 question: 'Would you like to receive updates and offers?',
@@ -485,37 +433,6 @@
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             return tomorrow.toISOString().split('T')[0];
-        }
-
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        function validatePhone(phone) {
-            const re = /^[\d\s\-\+\(\)]{10,}$/;
-            return re.test(phone);
-        }
-
-        function initProgressBar() {
-            const container = document.getElementById('progressContainer');
-            for (let i = 0; i < questions.length; i++) {
-                const dash = document.createElement('div');
-                dash.className = 'progress-dash';
-                dash.id = `dash-${i}`;
-                container.appendChild(dash);
-            }
-        }
-
-        function updateProgressBar() {
-            for (let i = 0; i < questions.length; i++) {
-                const dash = document.getElementById(`dash-${i}`);
-                if (i < currentQuestion) {
-                    dash.classList.add('completed');
-                } else {
-                    dash.classList.remove('completed');
-                }
-            }
         }
 
         function initQuestions() {
@@ -538,43 +455,36 @@
                             `).join('')}
                         </div>
                     `;
-                } else if (q.type === 'textarea') {
-                    inputHTML = `
-                        <div class="input-field">
-                            <i class="material-icons prefix">${q.icon}</i>
-                            <textarea id="input-${index}" class="materialize-textarea" oninput="handleInput(${index})"></textarea>
-                            <label for="input-${index}">${q.label}</label>
-                        </div>
-                        <div class="error-message" id="error-${index}"></div>
-                    `;
                 } else if (q.type === 'date') {
                     inputHTML = `
-                        <div class="input-field">
-                            <i class="material-icons prefix">${q.icon}</i>
-                            <input type="date" id="input-${index}" min="${getTomorrowDate()}" onchange="handleInput(${index})" />
-                            <label for="input-${index}" class="active">${q.label}</label>
-                            ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
+                        <div class="input-wrapper">
+                            <input type="date" class="mui-input" id="input-${index}" min="${getTomorrowDate()}" 
+                                   onchange="handleInput(${index})" />
+                            ${q.helper ? `<div class="helper-text"><span class="material-icons">info</span>${q.helper}</div>` : ''}
                         </div>
-                        <div class="error-message" id="error-${index}"></div>
                     `;
                 } else if (q.type === 'time') {
                     inputHTML = `
-                        <div class="input-field">
-                            <i class="material-icons prefix">${q.icon}</i>
-                            <input type="time" id="input-${index}" onchange="handleInput(${index})" />
-                            <label for="input-${index}" class="active">${q.label}</label>
-                            ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
+                        <div class="input-wrapper">
+                            <input type="time" class="mui-input" id="input-${index}" 
+                                   onchange="handleInput(${index})" />
+                            ${q.helper ? `<div class="helper-text"><span class="material-icons">info</span>${q.helper}</div>` : ''}
                         </div>
-                        <div class="error-message" id="error-${index}"></div>
+                    `;
+                } else if (q.type === 'textarea') {
+                    inputHTML = `
+                        <div class="input-wrapper">
+                            <textarea class="mui-input" id="input-${index}" placeholder="${q.placeholder}" 
+                                      oninput="handleInput(${index})"></textarea>
+                        </div>
                     `;
                 } else {
                     inputHTML = `
-                        <div class="input-field">
-                            <i class="material-icons prefix">${q.icon}</i>
-                            <input type="${q.type}" id="input-${index}" oninput="handleInput(${index})" ${q.required ? 'required' : ''} />
-                            <label for="input-${index}">${q.label}</label>
+                        <div class="input-wrapper">
+                            <input type="${q.type}" class="mui-input" id="input-${index}" placeholder="${q.placeholder}" 
+                                   oninput="handleInput(${index})" />
+                            ${q.icon ? `<span class="material-icons input-icon">${q.icon}</span>` : ''}
                         </div>
-                        <div class="error-message" id="error-${index}"></div>
                     `;
                 }
                 
@@ -583,7 +493,7 @@
                         <div class="question-number">Question ${index + 1} → ${questions.length}</div>
                         <div class="question-text">${q.question}</div>
                         ${inputHTML}
-                        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${index}" onclick="validateAndContinue(${index})">
+                        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${index}" onclick="nextQuestion()">
                             Continue
                             <span class="material-icons">arrow_downward</span>
                         </button>` : ''}
@@ -594,7 +504,6 @@
             });
             
             showQuestion(0);
-            M.updateTextFields();
         }
 
         function showQuestion(index) {
@@ -603,73 +512,31 @@
             
             setTimeout(() => {
                 document.getElementById(`question-${index}`).classList.add('active');
-                M.updateTextFields();
+                document.getElementById(`question-${index}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
             
-            updateProgressBar();
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function handleInput(index) {
             const input = document.getElementById(`input-${index}`);
             const continueBtn = document.getElementById(`continue-${index}`);
-            const question = questions[index];
-            const errorMsg = document.getElementById(`error-${index}`);
-            
-            errorMsg.classList.remove('show');
             
             if (input.value.trim() !== '') {
                 continueBtn.classList.add('visible');
+                answers[index] = input.value;
                 
                 if (input.type === 'date' || input.type === 'time') {
-                    setTimeout(() => validateAndContinue(index), 600);
+                    setTimeout(() => nextQuestion(), 600);
                 }
             } else {
                 continueBtn.classList.remove('visible');
             }
-        }
-
-        function validateAndContinue(index) {
-            const input = document.getElementById(`input-${index}`);
-            const question = questions[index];
-            const errorMsg = document.getElementById(`error-${index}`);
-            
-            errorMsg.classList.remove('show');
-            
-            if (!input.value.trim() && question.required) {
-                errorMsg.textContent = 'This field is required';
-                errorMsg.classList.add('show');
-                input.classList.add('invalid');
-                return;
-            }
-            
-            if (question.validation === 'email') {
-                if (!validateEmail(input.value)) {
-                    errorMsg.textContent = 'Please enter a valid email address';
-                    errorMsg.classList.add('show');
-                    input.classList.add('invalid');
-                    input.classList.remove('valid');
-                    return;
-                } else {
-                    input.classList.add('valid');
-                    input.classList.remove('invalid');
-                }
-            }
-            
-            if (question.validation === 'phone') {
-                if (!validatePhone(input.value)) {
-                    errorMsg.textContent = 'Please enter a valid phone number';
-                    errorMsg.classList.add('show');
-                    input.classList.add('invalid');
-                    input.classList.remove('valid');
-                    return;
-                } else {
-                    input.classList.add('valid');
-                    input.classList.remove('invalid');
-                }
-            }
-            
-            answers[index] = input.value;
-            nextQuestion();
         }
 
         function selectOption(questionIndex, optionIndex, value) {
@@ -694,38 +561,12 @@
         function completeQuestionnaire() {
             document.getElementById('questionsWrapper').style.display = 'none';
             document.getElementById('completionScreen').classList.add('active');
-            updateProgressBar();
-            
-            for (let i = 0; i < questions.length; i++) {
-                document.getElementById(`dash-${i}`).classList.add('completed');
-            }
+            document.getElementById('progressBar').style.width = '100%';
             
             console.log('Restaurant Order Details:', answers);
         }
 
-        initProgressBar();
         initQuestions();
     </script>
-
-
-<script>
-    function completeQuestionnaire() {
-    // Send data to Laravel
-    fetch('/api/restaurant-order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify(answers)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Show completion screen
-        document.getElementById('questionsWrapper').style.display = 'none';
-        document.getElementById('completionScreen').classList.add('active');
-    });
-}
-</script>
 </body>
 </html>

@@ -14,9 +14,10 @@
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="bootstrap, bootstrap5" />
-	
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css"> -->
+	<!-- <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="assets/css/slicknav.css">
     <link rel="stylesheet" href="assets/css/flaticon.css">
     <link rel="stylesheet" href="assets/css/gijgo.css">
@@ -25,7 +26,7 @@
 	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="assets/css/themify-icons.css">
 	<link rel="stylesheet" href="assets/css/slick.css">
-	<link rel="stylesheet" href="assets/css/nice-select.css">
+	<link rel="stylesheet" href="assets/css/nice-select.css"> -->
 	<link rel="stylesheet" href="assets/css/style.css">
     <style>
       
@@ -442,21 +443,82 @@ height: 100%;
     background: linear-gradient(92.22deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
 
 }
+.labeled{
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0.5rem 1rem;
+}
+.labeled p{
+    margin: 0px !important;
+}
+.hero .hero_details h1{
+    font-weight: 700;
+}
+.hero .hero_details:nth-child(1) p{
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+}
 @media (max-width: 575px) {
-    .services-cap .border-btn {
+    .border-btn {
         display: block;
-    }
-    .about-caption .border-btn{
-        display: block;
-        width: 70%;
-        text-align: center;
     }
 }
-.gj-picker{
-    position: absolute;
-    /* left: 32.5px !important; */
-    top: 50%;
+/* .meal_plan .images{
+    display: flex;
+    justify-content: end;
+} */
+.meal_plan img{
+    width: 70%;
+    
+}
+.meal_plan .details span{
+    color:#3a5bcc;
+    font-size: 22px;
+    font-weight: 700;
 
+}
+.order_features h3{
+    font-size: 2.7rem;
+}
+.order_features{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.order_features h3{
+    /* font-size: 2.7em; */
+    
+}
+.order_features p{
+    /* font-size: 1.2em; */
+
+}
+
+.order_features img{
+    width: 300px;
+    margin: auto;
+    height: 250px;
+}
+
+.meal_plan ul li{
+    list-style-type: disc;
+    padding: 10px 0px;
+}
+
+@media (max-width: 767px) {
+    .meal_plan img{
+    width: 100%;
+}
+.order_features h3{
+    font-size: 1.5em;
+    
+}
+.labeled p{
+    font-size: 12px;
+}
 }
     </style>
 </head>
@@ -513,251 +575,75 @@ height: 100%;
 
 
     <main>
-        <!--? slider Area Start-->
-        <div class="slider-area">
-            <div class="slider-active">
-                <!-- Single Slider -->
-            
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-7 col-lg-7 col-md-7 d-flex align-items-center">
-                                <div class="hero__caption">
-                                    <h1>Canada’s #1 Office Meal Delivery Solution</h1>
-                                    <p>Corporate meals and catering solutions - connecting your workplace with local restaurants</p>
-                                    <!-- Hero-btn -->
-                                    <div class="hero__btn">
-                                        <a href="#" class="btn hero-btn">Book a Call</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-5 col-lg-5 col-md-5">
-                                <div class="image">
-                                    <img src="/Caterloop Pages/assets/img/hero/hero.png" alt="" style="width: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- slider Area End-->
-          <!--? Steps TO Start -->
-        <div class="our-services pb-5">
+
+        <section class=" pt-150 ">
             <div class="container">
-                <div class="row justify-content-sm-center">
-                    <div class="cl-xl-7 col-lg-8 col-md-10">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-70">
-                            <!-- <span>Servicees We Offer</span> -->
-                            <h2>3 great ways to get catering</h2>
-                        </div> 
-                    </div>
-                </div>
                 <div class="row">
-                    <div class=" col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-restaurant"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="#">Uncatering Service</a></h5>
-                                <p>Custom meals ordered by individual employees</p>
-
-                                <a href="about.html" class="border-btn">Build Meal Plan</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-tools-and-utensils-1"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="#"> On Demand Catering</a></h5>
-                                <p>Bulk Orders placed by any individual person</p>
-                               
-<a href="about.html" class="border-btn">Check Restaurant</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-restaurant"></span>
-                            </div>
-                            <div class="services-cap">
-                                
-
-                                <h5><a href="#">Managed Catering</a></h5>
-                                <p>Quotes based on your requirements & budget</p>
-
-                                <a href="about.html" class="border-btn">Tell us about you event</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-7 d-flex align-items-center">
+                    <div>
+                    <h1>Managed Catering + Events</h1>
+                    <p class="py-3">Simplify and improve your corporate catering with access to hundreds of restaurants, caterers and options that are only one click, email or phone call away.</p>
+                     <div class="hero__btn">
+                     <a href="#" class="btn hero-btn fw-bold">Tell us about your event</a>
+                     </div>
+                     </div>
                 </div>
+                <div class="col-lg-5"><img src="office-meal/chalk-board.webp" alt="" style="width: 100%;"></div>
             </div>
-        </div>
-
-        <!--? About-2 Area Start -->
-        <div class="about-area2 py-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <!-- about-img -->
-                        <div class="about-img ">
-                            <img src="assets/img/gallery/about2.png" alt="">
-                        </div>
-
-                        
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="about-caption mb-50">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle mb-35">
-                                <span>About Our Restaurant</span>
-                                <h2>We Provide Good Food  For Your Family!</h2>
-                            </div>
-                            <p class="pera-top">Ut enim acgsd minim veniam, quxcis nostrud exercitation ullamco laboris nisi ufsit aliquip ex ea commodo consequat is aute irure m, quis nostrud exer</p>
-
-                            <p  class="mb-65 pera-bottom">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected our, or randomised words which don't look even slightly believab If you are going to use a passage.</p>
-                            <a href="about.html" class="border-btn">Learn More</a>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-        <!-- About-2 Area End -->
-     
-
-        <section class="popular py-5">
-            <div class="container">
-                <div class="section-tittle text-center mb-70">
-                                <h2>Popular Cuisines</h2>
-                            </div> 
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/Ultimate-Feast_Catering_2025_97-scaled.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/istockphoto-1457979959-612x612.webp" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/national-fast-food-day.webp" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <!-- <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/1683266155_1.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/1683266155_1.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-md-4">
-                        <a href="#" class="images">
-                            <img src="images/1683266155_1.jpg" alt="">
-                            <p>New Food</p>
-                        </a>
-                    </div> -->
-                   
-                </div>
-            </div>
-
         </section>
-        <!-- gallery Products End -->
-       
-        <!--? Booking Room Start-->
-        <div class="booking-area my-5 section-bg py-5" data-background="assets/img/gallery/section_bg04.png">
+    
+        <section class="hero">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="cl-xl-7 col-lg-8 col-md-10">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-40">
-                            <span>About Our Restaurant</span>
-                            <h2>Book A Order</h2>
-                        </div> 
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <div class="labeled d-flex justify-content-around align-items-center my-2">
+                            <img src="office-meal/canada.webp" alt="" width="20px" height="20px">
+                            <p>Delivery from more than 350 local restaurants</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <form action="#">
-                            <div class="booking-wrap d-flex justify-content-between align-items-center">
-                                <!-- Single Select Box -->
-                                <div class="single-select-box mb-30">
-                                    <div class="select-this">
-                                        <div class="select-itms">
-                                            <div class="select-icon">
-                                                <i class="ti-user"></i>
-                                            </div>
-                                            <select name="select" id="select1">
-                                                <option value="">Restaurant</option>
-                                                <option value="">Caterloop</option>
-                                                <option value="">New Restaurant</option>
-                                                <option value="">Networsys</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- select in date -->
-                                <div class="single-select-box mb-30">
-                                    <div class="boking-datepicker">
-                                        <input id="datepicker1"  placeholder="Date" />
-                                    </div>
-                                </div>
-                                <!-- Single Select Box -->
-                                <div class="single-select-box mb-30">
-                                    <div class="boking-datepicker">
-                                        <input id="timepicker"  placeholder="Time" />
-                                    </div>
-                                </div>
-                                <!-- Single Select Box -->
-                                <div class="single-select-box mb-30">
-                                    <button class="btn select-btn">Book Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div class="hero_details text-center">
+                <h1 class="pt-5 text-center">Expand sales to a new segment of customers</h1>
+                <p class=" text-center">Uncatering™, hungerhub’s workplace food delivery platform generates demand for large and bulk order opportunities for your restaurant from our existing and expanding client base, and on a consistent and reliable basis.</p>
+                     <img src="/Caterloop Pages/office-meal/mockup.webp" alt="" style="width: 30%;">
+
+                     
             </div>
-        </div>
-        <!-- Booking Room End-->
-      <div class="py-5">
-  <!-- <h3 class="text-center py-5">Our Clients</h3> -->
-  <div class="logos">
+            </div>
+        </section>
+
+        <section>
+            <h3 class="py-3 text-center fw-bold">Partnered with over 350 restaurants</h3>
+            <div class="logos">
     <div class="logos-slide">
+      <img src="images/logo/Alfies_Sandwiches.avif" />
+      <img src="images/logo/ALOETTE_GO_Logo_SingleLine-Cobalt-RGB_FA-scaled.png" />
+      <img src="images/logo/Ambassador_pizza.png" />
+      <img src="images/logo/Ariete-E-Toro.png" />
+      <img src="images/logo/Beach_Hill.png" />
+      <img src="images/logo/food_for_food.png" />
+      <img src="images/logo/German_doner_kebab.png" />
+      <img src="images/logo/greek_co.png" />
+      <img src="images/logo/La_Cubana.png" />
+      <img src="images/logo/Alfies_Sandwiches.avif" />
+      <img src="images/logo/ALOETTE_GO_Logo_SingleLine-Cobalt-RGB_FA-scaled.png" />
+      <img src="images/logo/Ambassador_pizza.png" />
+      <img src="images/logo/Ariete-E-Toro.png" />
+      <img src="images/logo/Beach_Hill.png" />
+      <img src="images/logo/food_for_food.png" />
+      <img src="images/logo/German_doner_kebab.png" />
+      <img src="images/logo/greek_co.png" />
+      <img src="images/logo/La_Cubana.png" />
+      <img src="images/logo/Alfies_Sandwiches.avif" />
+      <img src="images/logo/ALOETTE_GO_Logo_SingleLine-Cobalt-RGB_FA-scaled.png" />
+      <img src="images/logo/Ambassador_pizza.png" />
+      <img src="images/logo/Ariete-E-Toro.png" />
+      <img src="images/logo/Beach_Hill.png" />
+      <img src="images/logo/food_for_food.png" />
+      <img src="images/logo/German_doner_kebab.png" />
+      <img src="images/logo/greek_co.png" />
+      <img src="images/logo/La_Cubana.png" />
       <img src="images/logo/Alfies_Sandwiches.avif" />
       <img src="images/logo/ALOETTE_GO_Logo_SingleLine-Cobalt-RGB_FA-scaled.png" />
       <img src="images/logo/Ambassador_pizza.png" />
@@ -787,64 +673,34 @@ height: 100%;
       <img src="images/logo/La_Cubana.png" />
     </div>
   </div>
-</div>
-
-
-       
-
-          <!-- FAQ Section -->
-    <section class=" container">
-        <div class="max-w-7xl mx-auto px-6 py-5">
-            <div class="text-center mb-16">
-                <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 ">
-                    <i class="fas fa-question text-white text-2xl"></i>
-                </div>
-                <h2 class="text-4xl lg:text-5xl font-extrabold text-gray-900">Frequently Asked Question</h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <i class="fas fa-plus faq-icon"></i>
-                        <span class="text-gray-900">What is SaaS ?</span>
+        </section>
+<section class="py-5">
+    <h3 class="text-center fw-bold">Work with us</h3>
+<div class="hero__btn pt-4 d-flex justify-content-center">
+                     <a href="#" class="btn hero-btn">Get Started</a>
+                     </div>
+</section>
+        <section class="meal_plan py-5">
+            <div class="container">
+                <div class="row py-5">
+                   
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="details">
+                        <h3 class="py-3">One contact, one vendor. For all your needs.</h3>
+                        <ul>
+                            <li>Reduce the headache of managing multiple relationships and the back and forth communication patterns when arranging for a catered corporate event.</li>
+                            <li>Work together with a knowledgable account manager that supports and works alongside to make every event a success.</li>
+                            <li>Mixing our technology with human touch to provide you with the best possible experience.</li>
+                        </ul>
                     </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eos ut nisi, inventore rerum consequuntur sed suscipit hic amet ullam, odio tempora harum itaque ad aut cum cupiditate praesentium. Provident porro error sunt voluptas facilis quae, voluptatum commodi dolorem libero.</p>
                     </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <i class="fas fa-plus faq-icon"></i>
-                        <span class="text-gray-900">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, maiores. ?</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eos ut nisi, inventore rerum consequuntur sed suscipit hic amet ullam, odio tempora harum itaque ad aut cum cupiditate praesentium.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <i class="fas fa-plus faq-icon"></i>
-                        <span class="text-gray-900">Lorem ipsum dolor sit amet, consectetur adipiscing ?</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eos ut nisi, inventore rerum consequuntur sed suscipit hic amet ullam, odio tempora harum itaque ad aut cum cupiditate praesentium.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <i class="fas fa-plus faq-icon"></i>
-                        <span class="text-gray-900">Lorem ipsum dolor sit amet, consectetur adipiscing ?</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eos ut nisi, inventore rerum consequuntur sed suscipit hic amet ullam, odio tempora harum itaque ad aut cum cupiditate praesentium.</p>
-                    </div>
+                     <div class="col-lg-6">
+                        <div class="images d-flex justify-content-end"><img src="/Caterloop Pages/office-meal/one_contact.webp" alt=""></div></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+      
 
 <section class="py-5">
     
