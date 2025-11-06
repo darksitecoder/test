@@ -692,6 +692,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         const questions = [
+            { type: 'date', question: 'What day is your event or catering requirement ?', label: 'Select date', helper: 'Select a date from tomorrow onwards', icon: 'event', required: true },
             { type: 'text', question: 'What\'s your name?', label: 'Enter your full name', icon: 'person', required: true },
             { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
             { type: 'tel', question: 'What\'s your phone number?', label: '+1 (555) 000-0000', icon: 'phone', required: true, validation: 'phone' },
@@ -700,7 +701,7 @@
                 question: 'Is this for dine-in or takeaway?',
                 options: ['Dine-in', 'Takeaway', 'Delivery', 'Curbside Pickup', 'Reserve Table']
             },
-            { type: 'date', question: 'When would you like to visit us?', label: 'Select date', helper: 'Select a date from tomorrow onwards', icon: 'event', required: true },
+            
             { type: 'time', question: 'What time works best for you?', label: 'Select time', helper: 'We\'re open from 11:00 AM to 11:00 PM', icon: 'access_time', required: true },
             { type: 'number', question: 'How many people will be joining?', label: 'Number of guests', icon: 'group', required: true },
             { 

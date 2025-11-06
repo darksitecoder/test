@@ -423,3 +423,21 @@ initQuestions();
 </script>
 </body>
 </html>
+
+
+
+// replace with your real endpoint
+            const endpoint = 'https://example.com/receive-form';
+
+            try {
+                const result = await sendFormData(endpoint, payload);
+                // show success (customize as needed)
+                document.querySelector('.completion-text').textContent = 'Order sent!';
+                document.querySelector('.completion-subtext').textContent = 'We received your request.';
+                console.log('Server response:', result);
+            } catch (err) {
+                // show error to user
+                document.querySelector('.completion-text').textContent = 'Submission failed';
+                document.querySelector('.completion-subtext').textContent = 'Please try again or contact support.';
+                // optionally allow retry by exposing a button — left as exercise
+            }

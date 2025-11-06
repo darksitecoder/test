@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HungerHub - Get Started</title>
+    <title>CaterLoop - Get Started</title>
     <style>
         * {
             margin: 0;
@@ -46,6 +46,9 @@
             margin-bottom: 60px;
             font-size: 24px;
             color: #333;
+        }
+        .logo img {
+            height: 40px;
         }
 
         .logo-circle {
@@ -132,14 +135,14 @@
         }
 
         .option-btn:hover {
-            border-color: #6366f1;
+            border-color: #FF8702;
             background: #f5f5ff;
         }
 
         .option-btn.selected {
-            background: #6366f1;
+            background: #FF8702;
             color: white;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .meal-options {
@@ -163,14 +166,14 @@
         }
 
         .meal-card:hover {
-            border-color: #6366f1;
+            border-color: #FF8702;
             background: #f5f5ff;
         }
 
         .meal-card.selected {
-            background: #6366f1;
+            background: #FF8702;
             color: white;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .meal-icon {
@@ -200,14 +203,14 @@
         }
 
         .time-btn:hover {
-            border-color: #6366f1;
+            border-color: #FF8702;
             background: #f5f5ff;
         }
 
         .time-btn.selected {
-            background: #6366f1;
+            background: #FF8702;
             color: white;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .day-options {
@@ -228,14 +231,14 @@
         }
 
         .day-btn:hover {
-            border-color: #6366f1;
+            border-color: #FF8702;
             background: #f5f5ff;
         }
 
         .day-btn.selected {
-            background: #6366f1;
+            background: #FF8702;
             color: white;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .date-input {
@@ -259,7 +262,7 @@
             width: 100%;
             height: 8px;
             border-radius: 4px;
-            background: linear-gradient(to right, #6366f1 0%, #6366f1 40%, #e0e0e0 40%, #e0e0e0 100%);
+            background: linear-gradient(to right, #FF8702 0%, #FF8702 40%, #e0e0e0 40%, #e0e0e0 100%);
             outline: none;
             -webkit-appearance: none;
             position: relative;
@@ -271,7 +274,7 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: #6366f1;
+            background: #FF8702;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
         }
@@ -280,7 +283,7 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: #6366f1;
+            background: #FF8702;
             cursor: pointer;
             border: none;
             box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
@@ -309,7 +312,7 @@
         .toggle {
             width: 48px;
             height: 28px;
-            background: #6366f1;
+            background: #FF8702;
             border-radius: 14px;
             position: relative;
             cursor: pointer;
@@ -351,7 +354,7 @@
 
         .continue-btn {
             padding: 16px 40px;
-            background: #2d3561;
+            background: #000;
             color: white;
             border: none;
             border-radius: 8px;
@@ -362,7 +365,7 @@
         }
 
         .continue-btn:hover {
-            background: #1f2547;
+            background: #313132;
         }
 
         .continue-btn:disabled {
@@ -404,13 +407,13 @@
         .testimonial-text {
             font-size: 18px;
             line-height: 1.6;
-            color: #2d3561;
+            color: #000;
             margin-bottom: 20px;
         }
 
         .testimonial-author {
             font-size: 16px;
-            color: #2d3561;
+            color: #000;
             font-weight: 500;
         }
 
@@ -477,7 +480,7 @@
         }
 
         .dot.active {
-            background: #2d3561;
+            background: #000;
             width: 24px;
             border-radius: 4px;
         }
@@ -500,14 +503,14 @@
         }
 
         .dietary-btn:hover {
-            border-color: #6366f1;
+            border-color: #FF8702;
             background: #f5f5ff;
         }
 
         .dietary-btn.selected {
-            background: #6366f1;
+            background: #FF8702;
             color: white;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .text-input {
@@ -522,7 +525,7 @@
 
         .text-input:focus {
             outline: none;
-            border-color: #6366f1;
+            border-color: #FF8702;
         }
 
         .text-input::placeholder {
@@ -532,7 +535,7 @@
         .skip-btn {
             padding: 16px 40px;
             background: transparent;
-            color: #2d3561;
+            color: #000;
             border: none;
             font-size: 16px;
             font-weight: 500;
@@ -589,7 +592,7 @@
         .info-title {
             font-size: 24px;
             font-weight: 600;
-            color: #2d3561;
+            color: #000;
             margin-bottom: 16px;
         }
 
@@ -606,6 +609,7 @@
 
             .testimonial-section {
                 min-height: 400px;
+                display: none;
             }
 
             .food-categories {
@@ -642,14 +646,145 @@
         .hidden {
             display: none;
         }
+
+        #groupPlanLink .fw-bolder{
+            
+            font-weight: 700;
+        }
+        #groupPlanLink a{
+            text-decoration: none;
+            color: #FF8702;
+            font-weight: 700;
+        }
+
+        .carousel-container {
+  width: 100%;
+  max-width: 1100px;
+  
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nav-btn {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #ddd;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: #333;
+}
+
+#foodCarousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.food-categories {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.category {
+  flex: 0 0 calc(25% - 1rem);
+  /* background: #f8f9fa; */
+  border-radius: 12px;
+  /* padding: 1rem; */
+  margin: 0 0.5rem;
+  line-height: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.carousel-container .food-categories{
+    gap: 0;
+}
+
+.category .category-image{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 0.5rem;
+}
+.category .category-image img{
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.category-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  /* margin-bottom: 0.5rem; */
+}
+
+.food-item {
+  font-size: 0.9rem;
+  color: #555;
+  /* margin-bottom: 0.3rem; */
+}
+
+.preference-actions {
+  margin-top: 0.5rem;
+}
+
+.preference-btn {
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.preference-btn:hover {
+  background: #ddd;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <div class="form-section">
             <div class="logo">
-                <div class="logo-circle">h</div>
-                <span>hungerhub</span>
+                <img src="/Caterloop Pages/images/footer_logo.png" alt="">
             </div>
 
             <!-- Step 1 -->
@@ -660,14 +795,15 @@
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
+                    <div class="progress-step"></div>
                 </div>
 
-                <h1>Plug in your office's size and catering needs to see what your meal plan on hungerhub will look like!</h1>
+                <h1>Plug in your office's size and catering needs to see what your meal plan on CaterLoop will look like!</h1>
                 
                 <div class="question">How many people do you expect to order on your meal plan?</div>
                 
-                <div class="options-grid">
-                    <button class="option-btn" data-value="<20">&lt;20</button>
+                  <div class="options-grid step-1-options">
+                    <button class="option-btn less" data-value="<-20">&lt;20</button>
                     <button class="option-btn" data-value="20-39">20-39</button>
                     <button class="option-btn" data-value="40-59">40-59</button>
                     <button class="option-btn" data-value="60-79">60-79</button>
@@ -676,6 +812,8 @@
                 </div>
 
                 <button class="continue-btn" id="step1Btn">Customize your meal plan</button>
+                <!-- link shown when "<20" is selected -->
+                <div id="groupPlanLink" class="hidden"><p class="fw-bolder">Our meal programs are designed for teams of 20 or more</p><p>For teams smaller than 20 please use <a href="https://example.com/group-meal-plan" target="_blank" rel="noopener noreferrer">Group Orders</a></p></div>
             </div>
 
             <!-- Step 2 -->
@@ -687,6 +825,7 @@
                 <div class="progress-bar">
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
@@ -736,6 +875,7 @@
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
                     <div class="progress-step"></div>
                     <div class="progress-step"></div>
                 </div>
@@ -801,67 +941,177 @@
             </div>
 
             <!-- Step 4 -->
-            <div id="step4" class="step hidden">
+                <div id="step4" class="step hidden">
+                <button class="back-btn" onclick="goToStep(3)">
+                    <span>←</span> Back
+                </button>
+            <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
                     <div class="progress-step active"></div>
                     <div class="progress-step"></div>
+                    <div class="progress-step"></div>
                 </div>
+                </div>
+<div class="carousel-container">
+  
 
-                <div id="foodCarousel">
-                    <div class="food-categories">
-                        <div class="category">
-                            <div class="category-title">Burgers</div>
-                            <div class="food-item">Salads</div>
-                            <div class="food-item">Bowls</div>
-                            <div class="food-item">Vegan Friendly</div>
-                            <div class="food-item">Gluten Free Friendly</div>
-                            <div class="preference-actions">
-                                <button class="preference-btn">👍 Neutral</button>
-                                <button class="preference-btn">👎</button>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="category-title">Sandwiches</div>
-                            <div class="food-item">Sandwiches</div>
-                            <div class="food-item">Wraps</div>
-                            <div class="food-item">Burgers</div>
-                            <div class="food-item">Chicken Sandwiches</div>
-                            <div class="preference-actions">
-                                <button class="preference-btn">👍 Neutral</button>
-                                <button class="preference-btn">👎</button>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="category-title">Asian</div>
-                            <div class="food-item">Chinese</div>
-                            <div class="food-item">Korean</div>
-                            <div class="food-item">Vietnamese</div>
-                            <div class="preference-actions">
-                                <button class="preference-btn">👍 Neutral</button>
-                                <button class="preference-btn">👎</button>
-                            </div>
-                        </div>
-                        <div class="category">
-                            <div class="category-title">Japanese</div>
-                            <div class="food-item">Sushi</div>
-                            <div class="food-item">Bento Boxes</div>
-                            <div class="food-item">Ramen</div>
-                            <div class="preference-actions">
-                                <button class="preference-btn">👍 Neutral</button>
-                                <button class="preference-btn">👎</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div id="foodCarousel">
+    <div class="food-categories">
+      <!-- CARD 1 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/1683266155_1.jpg" alt="">
+        </div>
+        <div class="category-title">Burgers</div>
+        <div class="food-item">Salads</div>
+        <div class="food-item">Bowls</div>
+        <div class="food-item">Vegan Friendly</div>
+        <div class="food-item">Gluten Free Friendly</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 2 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="">
+        </div>
+        <div class="category-title">Sandwiches</div>
+        <div class="food-item">Sandwiches</div>
+        <div class="food-item">Wraps</div>
+        <div class="food-item">Burgers</div>
+        <div class="food-item">Chicken Sandwiches</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 3 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/istockphoto-1457979959-612x612.webp" alt="">
+        </div>
+        <div class="category-title">Asian</div>
+        <div class="food-item">Chinese</div>
+        <div class="food-item">Korean</div>
+        <div class="food-item">Vietnamese</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 4 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/national-fast-food-day.webp" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 5 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/top-view-fast-food-mix-mozzarella-sticks-club-sandwich-hamburger-mushroom-pizza-caesar-shrimp-salad-french-fries-ketchup-mayo-cheese-sauces-table_141793-3998.jpg" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 6 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/pexels-janetrangdoan-1092730.jpg" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 7 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/1683266155_1.jpg" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 8 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/health-food-high-fiber-content-concept-diet-fruit-vegetables-cereals-whole-wheat-pasta-grains-legumes-herbs-foods-102328760.webp" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- CARD 9 -->
+      <div class="category">
+        <div class="category-image">
+            <img src="/Caterloop Pages/images/pexels-janetrangdoan-1092730.jpg" alt="">
+        </div>
+        <div class="category-title">Japanese</div>
+        <div class="food-item">Sushi</div>
+        <div class="food-item">Bento Boxes</div>
+        <div class="food-item">Ramen</div>
+        <div class="preference-actions">
+          <button class="preference-btn">👍</button>
+          <button class="preference-btn">Neutral</button>
+          <button class="preference-btn">👎</button>
+        </div>
+      </div>
+      <!-- ADD MORE CARDS IF YOU LIKE -->
+    </div>
+  </div>
 
-                <div class="carousel-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
+  <div class="carousel-header">
+    <button class="nav-btn left-btn">❮</button>
+    <div class="carousel-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button class="nav-btn right-btn">❯</button>
+  </div>
+</div>
+
 
                 <div class="question">Dietary preferences</div>
                 <p class="subtitle">Please select any dietary restrictions or allergies on your team we should be aware of</p>
@@ -889,7 +1139,7 @@
                     <svg class="email-icon" viewBox="0 0 200 200" fill="none">
                         <rect x="20" y="50" width="160" height="100" rx="8" fill="#e8e4f3"/>
                         <rect x="40" y="70" width="120" height="80" rx="4" fill="white"/>
-                        <path d="M40 70 L100 110 L160 70" stroke="#6366f1" stroke-width="3" fill="none"/>
+                        <path d="M40 70 L100 110 L160 70" stroke="#FF8702" stroke-width="3" fill="none"/>
                         <rect x="80" y="95" width="40" height="30" rx="4" fill="#c4c4c4"/>
                     </svg>
                     <h1 class="thank-you-title">Thank you!</h1>
@@ -926,10 +1176,13 @@
     </div>
 
     <script>
+        // Consolidated and updated scripts for the form (replaces the previous two script blocks)
+
         let currentStep = 1;
         let formData = {
             teamSize: '',
             mealType: '',
+            customMealName: '',
             deliveryTime: '',
             frequency: '',
             days: [],
@@ -947,68 +1200,270 @@
                 author: "Carmen J."
             },
             {
-                text: "We love hungerhub at work, lunches are a breeze and everyone gets exactly what they want and stays within budget. The Customer Support there is first class, the entire team is very quick to reply and always happy to help.",
+                text: "We love CaterLoop at work, lunches are a breeze and everyone gets exactly what they want and stays within budget. The Customer Support there is first class, the entire team is very quick to reply and always happy to help.",
                 author: "Julie R."
             },
             {
-                text: "We started using hungerhub this week and are so impressed! They have been quick to respond, timely, thoughtful, and have gone above and beyond in helping us cater office lunches and events. Would highly recommend using their services!",
+                text: "We started using CaterLoop this week and are so impressed! They have been quick to respond, timely, thoughtful, and have gone above and beyond in helping us cater office lunches and events. Would highly recommend using their services!",
                 author: "Alyssa P."
             }
         ];
 
-        // Step 1: Team size selection
-        document.querySelectorAll('#step1 .option-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('#step1 .option-btn').forEach(b => b.classList.remove('selected'));
-                this.classList.add('selected');
-                formData.teamSize = this.dataset.value;
-                // Button is always enabled, just needs selection to proceed
+        // Helper: format time from "HH:MM" (24h) to "h:mm am/pm"
+        function formatTime24ToAmPm(time24) {
+            if (!time24) return '';
+            const [hh, mm] = time24.split(':').map(Number);
+            const ampm = hh >= 12 ? 'pm' : 'am';
+            const h = hh % 12 === 0 ? 12 : hh % 12;
+            return `${h}:${String(mm).padStart(2, '0')} ${ampm}`;
+        }
+
+        // --------------------
+        // STEP 1: Team size selection (single handler)
+        // --------------------
+        (function initStep1() {
+            const step1Btn = document.getElementById('step1Btn');
+            const groupPlanLink = document.getElementById('groupPlanLink');
+
+            document.querySelectorAll('#step1 .option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#step1 .option-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    formData.teamSize = this.dataset.value;
+
+                    if (this.classList.contains('less')) {
+                        // hide continue button, show link to group plan
+                        if (step1Btn) step1Btn.classList.add('hidden');
+                        if (groupPlanLink) groupPlanLink.classList.remove('hidden');
+                    } else {
+                        if (step1Btn) step1Btn.classList.remove('hidden');
+                        if (groupPlanLink) groupPlanLink.classList.add('hidden');
+                    }
+                });
             });
-        });
 
-        document.getElementById('step1Btn').addEventListener('click', () => {
-            if (formData.teamSize) {
-                goToStep(2);
-            } else {
-                alert('Please select team size to continue');
+            if (step1Btn) {
+                step1Btn.addEventListener('click', () => {
+                    if (formData.teamSize && !document.querySelector('#step1 .option-btn.less.selected')) {
+                        goToStep(2);
+                    } else if (!formData.teamSize) {
+                        alert('Please select team size to continue');
+                    }
+                });
             }
-        });
+        })();
 
-        // Step 2: Meal type and time selection
+        // --------------------
+        // STEP 2: Meal type & time selection
+        // --------------------
+        const defaultTimes = {
+            breakfast: ['08:00', '09:00', '10:00', 'custom'],
+            lunch: ['11:30', '12:00', '12:30', '13:00', 'custom'],
+            dinner: ['16:00', '17:00', '18:00', '19:00', 'custom'],
+            other: ['custom'] // 'Other' shows meal name input + custom time picker
+        };
+
+        function clearElementChildren(el) {
+            while (el.firstChild) el.removeChild(el.firstChild);
+        }
+
+        function renderTimeOptions(mealType) {
+            const timeOptionsContainer = document.querySelector('#step2 .time-options');
+            clearElementChildren(timeOptionsContainer);
+
+            // If 'other' show meal-name input above time options
+            if (mealType === 'other') {
+                const wrapper = document.createElement('div');
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.gap = '12px';
+                wrapper.style.marginBottom = '12px';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Enter meal name (e.g., Team Snack)';
+                input.className = 'text-input';
+                input.value = formData.customMealName || '';
+                input.addEventListener('input', () => {
+                    formData.customMealName = input.value.trim();
+                });
+
+                wrapper.appendChild(input);
+                timeOptionsContainer.appendChild(wrapper);
+            }
+
+            const times = defaultTimes[mealType] || defaultTimes.other;
+            times.forEach(t => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'time-btn';
+                btn.dataset.value = t;
+                btn.textContent = t === 'custom' ? 'Select Your Time' : formatTime24ToAmPm(t);
+                btn.addEventListener('click', async function () {
+                    // remove selected from siblings
+                    timeOptionsContainer.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    if (t === 'custom') {
+                        // show native time picker modal
+                        const picked = await showTimePickerModal();
+                        if (picked) {
+                            formData.deliveryTime = picked;
+                            // Mark custom button with the chosen time label
+                            btn.textContent = formatTime24ToAmPm(picked);
+                            btn.dataset.value = picked;
+                        } else {
+                            // user canceled — unselect
+                            btn.classList.remove('selected');
+                        }
+                    } else {
+                        formData.deliveryTime = t;
+                    }
+                });
+                timeOptionsContainer.appendChild(btn);
+            });
+        }
+
+        // When a meal card is selected, update times and store mealType
         document.querySelectorAll('#step2 .meal-card').forEach(card => {
             card.addEventListener('click', function() {
                 document.querySelectorAll('#step2 .meal-card').forEach(c => c.classList.remove('selected'));
                 this.classList.add('selected');
-                formData.mealType = this.dataset.value;
+                const meal = this.dataset.value;
+                formData.mealType = meal;
+                formData.deliveryTime = '';
+                // preserve customMealName only if 'other' selected
+                if (meal !== 'other') formData.customMealName = '';
+                renderTimeOptions(meal);
             });
         });
 
-        document.querySelectorAll('#step2 .time-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('#step2 .time-btn').forEach(b => b.classList.remove('selected'));
-                this.classList.add('selected');
-                formData.deliveryTime = this.dataset.value;
-            });
-        });
-
-        document.getElementById('step2Btn').addEventListener('click', () => {
-            if (formData.mealType && formData.deliveryTime) {
+        // Continue button for step2
+        const step2Btn = document.getElementById('step2Btn');
+        if (step2Btn) {
+            step2Btn.addEventListener('click', () => {
+                const needMealType = !formData.mealType;
+                const needTime = !formData.deliveryTime;
+                if (needMealType || needTime) {
+                    alert('Please select meal type and delivery time to continue');
+                    return;
+                }
+                // If mealType is other, ensure a customMealName exists
+                if (formData.mealType === 'other' && !formData.customMealName) {
+                    alert('Please enter a name for the meal (Other) before continuing');
+                    return;
+                }
                 goToStep(3);
-            } else {
-                alert('Please select meal type and delivery time to continue');
-            }
-        });
+            });
+        }
 
-        // Step 3: Frequency, days, allowance
+        // --------------------
+        // Native time picker modal using input[type="time"]
+        // Returns Promise that resolves to "HH:MM" (24h) or null if canceled
+        // --------------------
+        function showTimePickerModal() {
+            return new Promise(resolve => {
+                // Create modal elements
+                let modal = document.getElementById('timePickerModal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'timePickerModal';
+                    modal.style.position = 'fixed';
+                    modal.style.left = '0';
+                    modal.style.top = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.display = 'flex';
+                    modal.style.alignItems = 'center';
+                    modal.style.justifyContent = 'center';
+                    modal.style.background = 'rgba(0,0,0,0.4)';
+                    modal.style.zIndex = '1000';
+
+                    const box = document.createElement('div');
+                    box.style.background = 'white';
+                    box.style.padding = '20px';
+                    box.style.borderRadius = '12px';
+                    box.style.minWidth = '260px';
+                    box.style.display = 'flex';
+                    box.style.flexDirection = 'column';
+                    box.style.gap = '12px';
+                    box.style.alignItems = 'stretch';
+
+                    const label = document.createElement('div');
+                    label.textContent = 'Select a time';
+                    label.style.fontWeight = '600';
+
+                    const timeInput = document.createElement('input');
+                    timeInput.type = 'time';
+                    timeInput.id = 'modalTimeInput';
+                    timeInput.style.fontSize = '16px';
+                    timeInput.style.padding = '8px';
+
+                    const actions = document.createElement('div');
+                    actions.style.display = 'flex';
+                    actions.style.justifyContent = 'flex-end';
+                    actions.style.gap = '8px';
+
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.type = 'button';
+                    cancelBtn.textContent = 'Cancel';
+                    cancelBtn.className = 'continue-btn';
+                    cancelBtn.style.background = '#ddd';
+                    cancelBtn.style.color = '#000';
+
+                    const saveBtn = document.createElement('button');
+                    saveBtn.type = 'button';
+                    saveBtn.textContent = 'Save';
+                    saveBtn.className = 'continue-btn';
+
+                    actions.appendChild(cancelBtn);
+                    actions.appendChild(saveBtn);
+                    box.appendChild(label);
+                    box.appendChild(timeInput);
+                    box.appendChild(actions);
+                    modal.appendChild(box);
+                    document.body.appendChild(modal);
+
+                    // Cancel handler
+                    cancelBtn.addEventListener('click', () => {
+                        modal.remove();
+                        resolve(null);
+                    });
+
+                    // Save handler
+                    saveBtn.addEventListener('click', () => {
+                        const val = timeInput.value; // "HH:MM"
+                        modal.remove();
+                        if (val) resolve(val);
+                        else resolve(null);
+                    });
+
+                    // allow clicking outside to cancel
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                            resolve(null);
+                        }
+                    });
+                }
+                // focus input
+                const input = document.getElementById('modalTimeInput');
+                if (input) input.focus();
+            });
+        }
+
+        // --------------------
+        // STEP 3: Frequency, days, allowance (unchanged logic, minor fixes)
+        // --------------------
         document.querySelectorAll('#step3 .time-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const parent = this.parentElement;
                 parent.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
                 this.classList.add('selected');
-                
-                if (parent.previousElementSibling?.textContent.includes('often')) {
+
+                if (parent.previousElementSibling?.textContent?.toLowerCase().includes('often')) {
                     formData.frequency = this.dataset.value;
-                } else if (parent.previousElementSibling?.textContent.includes('allowance')) {
+                } else if (parent.previousElementSibling?.textContent?.toLowerCase().includes('allowance')) {
                     formData.allowanceType = this.dataset.value;
                 }
                 checkStep3Complete();
@@ -1031,16 +1486,19 @@
         const slider = document.getElementById('allowanceSlider');
         const sliderValue = document.getElementById('sliderValue');
 
-        slider.addEventListener('input', function() {
-            formData.allowanceAmount = this.value;
-            sliderValue.textContent = ' + this.value;
-            const percentage = (this.value / 50) * 100;
-            this.style.background = `linear-gradient(to right, #6366f1 0%, #6366f1 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
-            checkStep3Complete();
-        });
+        if (slider) {
+            slider.addEventListener('input', function() {
+                formData.allowanceAmount = this.value;
+                sliderValue.textContent = `$${this.value}`;
+                const percentage = (this.value / 50) * 100;
+                this.style.background = `linear-gradient(to right, #FF8702 0%, #FF8702 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
+                checkStep3Complete();
+            });
+        }
 
         function toggleCredit() {
             const toggle = document.getElementById('creditToggle');
+            if (!toggle) return;
             toggle.classList.toggle('on');
             toggle.classList.toggle('off');
             formData.creditCard = toggle.classList.contains('on');
@@ -1048,12 +1506,16 @@
 
         function checkStep3Complete() {
             const complete = formData.frequency && formData.days.length > 0 && formData.allowanceType;
-            document.getElementById('step3Btn').disabled = !complete;
+            const step3Btn = document.getElementById('step3Btn');
+            if (step3Btn) step3Btn.disabled = !complete;
         }
 
-        document.getElementById('step3Btn').addEventListener('click', () => goToStep(4));
+        const step3Btn = document.getElementById('step3Btn');
+        if (step3Btn) step3Btn.addEventListener('click', () => goToStep(4));
 
-        // Step 4: Food preferences and dietary restrictions
+        // --------------------
+        // STEP 4: Food preferences and dietary restrictions
+        // --------------------
         document.querySelectorAll('#step4 .dietary-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 this.classList.toggle('selected');
@@ -1077,9 +1539,10 @@
         // Navigation function
         function goToStep(step) {
             document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
-            document.getElementById('step' + step).classList.remove('hidden');
+            const el = document.getElementById('step' + step);
+            if (el) el.classList.remove('hidden');
             currentStep = step;
-            
+
             // Update testimonial or info card
             if (step === 4) {
                 document.getElementById('testimonialContent').classList.add('hidden');
@@ -1090,13 +1553,13 @@
             } else {
                 document.getElementById('testimonialContent').classList.remove('hidden');
                 document.getElementById('infoCard').classList.add('hidden');
-                
+
                 // Rotate testimonials
                 const testimonialIndex = (step - 1) % testimonials.length;
                 document.getElementById('testimonialText').textContent = testimonials[testimonialIndex].text;
                 document.getElementById('testimonialAuthor').textContent = '- ' + testimonials[testimonialIndex].author;
             }
-            
+
             window.scrollTo(0, 0);
         }
 
@@ -1110,8 +1573,452 @@
             });
         });
 
-        // Initialize
+        // Initialize UI: show step1 and pre-render nothing
         document.getElementById('step1').classList.remove('hidden');
+
+        // Optionally pre-select first meal card/time when user goes to step 2 without selecting (kept explicit)
     </script>
+
+    <script>
+        // Consolidated and updated scripts for the form (replaces the previous two script blocks)
+
+        let currentStep = 1;
+        let formData = {
+            teamSize: '',
+            mealType: '',
+            customMealName: '',
+            deliveryTime: '',
+            frequency: '',
+            days: [],
+            startDate: '',
+            allowanceType: '',
+            allowanceAmount: 20,
+            creditCard: true,
+            dietary: [],
+            additionalRestrictions: ''
+        };
+
+        const testimonials = [
+            {
+                text: "Great company, great concept, and great team all the way around! Help is fast and they are great to deal with! We order for our Calgary AND Vancouver offices - one admin, two provinces - it's just what we wanted!",
+                author: "Carmen J."
+            },
+            {
+                text: "We love CaterLoop at work, lunches are a breeze and everyone gets exactly what they want and stays within budget. The Customer Support there is first class, the entire team is very quick to reply and always happy to help.",
+                author: "Julie R."
+            },
+            {
+                text: "We started using CaterLoop this week and are so impressed! They have been quick to respond, timely, thoughtful, and have gone above and beyond in helping us cater office lunches and events. Would highly recommend using their services!",
+                author: "Alyssa P."
+            }
+        ];
+
+        // Helper: format time from "HH:MM" (24h) to "h:mm am/pm"
+        function formatTime24ToAmPm(time24) {
+            if (!time24) return '';
+            const [hh, mm] = time24.split(':').map(Number);
+            const ampm = hh >= 12 ? 'pm' : 'am';
+            const h = hh % 12 === 0 ? 12 : hh % 12;
+            return `${h}:${String(mm).padStart(2, '0')} ${ampm}`;
+        }
+
+        // --------------------
+        // STEP 1: Team size selection (single handler)
+        // --------------------
+        (function initStep1() {
+            const step1Btn = document.getElementById('step1Btn');
+            const groupPlanLink = document.getElementById('groupPlanLink');
+
+            document.querySelectorAll('#step1 .option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#step1 .option-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+                    formData.teamSize = this.dataset.value;
+
+                    if (this.classList.contains('less')) {
+                        // hide continue button, show link to group plan
+                        if (step1Btn) step1Btn.classList.add('hidden');
+                        if (groupPlanLink) groupPlanLink.classList.remove('hidden');
+                    } else {
+                        if (step1Btn) step1Btn.classList.remove('hidden');
+                        if (groupPlanLink) groupPlanLink.classList.add('hidden');
+                    }
+                });
+            });
+
+            if (step1Btn) {
+                step1Btn.addEventListener('click', () => {
+                    if (formData.teamSize && !document.querySelector('#step1 .option-btn.less.selected')) {
+                        goToStep(2);
+                    } else if (!formData.teamSize) {
+                        alert('Please select team size to continue');
+                    }
+                });
+            }
+        })();
+
+        // --------------------
+        // STEP 2: Meal type & time selection
+        // --------------------
+        const defaultTimes = {
+            breakfast: ['08:00', '09:00', '10:00', 'custom'],
+            lunch: ['11:30', '12:00', '12:30', '13:00', 'custom'],
+            dinner: ['16:00', '17:00', '18:00', '19:00', 'custom'],
+            other: ['custom'] // 'Other' shows meal name input + custom time picker
+        };
+
+        function clearElementChildren(el) {
+            while (el.firstChild) el.removeChild(el.firstChild);
+        }
+
+        function renderTimeOptions(mealType) {
+            const timeOptionsContainer = document.querySelector('#step2 .time-options');
+            clearElementChildren(timeOptionsContainer);
+
+            // If 'other' show meal-name input above time options
+            if (mealType === 'other') {
+                const wrapper = document.createElement('div');
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.gap = '12px';
+                wrapper.style.marginBottom = '12px';
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = 'Enter meal name (e.g., Team Snack)';
+                input.className = 'text-input';
+                input.value = formData.customMealName || '';
+                input.addEventListener('input', () => {
+                    formData.customMealName = input.value.trim();
+                });
+
+                wrapper.appendChild(input);
+                timeOptionsContainer.appendChild(wrapper);
+            }
+
+            const times = defaultTimes[mealType] || defaultTimes.other;
+            times.forEach(t => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'time-btn';
+                btn.dataset.value = t;
+                btn.textContent = t === 'custom' ? 'Select Your Time' : formatTime24ToAmPm(t);
+                btn.addEventListener('click', async function () {
+                    // remove selected from siblings
+                    timeOptionsContainer.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    if (t === 'custom') {
+                        // show native time picker modal
+                        const picked = await showTimePickerModal();
+                        if (picked) {
+                            formData.deliveryTime = picked;
+                            // Mark custom button with the chosen time label
+                            btn.textContent = formatTime24ToAmPm(picked);
+                            btn.dataset.value = picked;
+                        } else {
+                            // user canceled — unselect
+                            btn.classList.remove('selected');
+                        }
+                    } else {
+                        formData.deliveryTime = t;
+                    }
+                });
+                timeOptionsContainer.appendChild(btn);
+            });
+        }
+
+        // When a meal card is selected, update times and store mealType
+        document.querySelectorAll('#step2 .meal-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('#step2 .meal-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                const meal = this.dataset.value;
+                formData.mealType = meal;
+                formData.deliveryTime = '';
+                // preserve customMealName only if 'other' selected
+                if (meal !== 'other') formData.customMealName = '';
+                renderTimeOptions(meal);
+            });
+        });
+
+        // Continue button for step2
+        const step2Btn = document.getElementById('step2Btn');
+        if (step2Btn) {
+            step2Btn.addEventListener('click', () => {
+                const needMealType = !formData.mealType;
+                const needTime = !formData.deliveryTime;
+                if (needMealType || needTime) {
+                    alert('Please select meal type and delivery time to continue');
+                    return;
+                }
+                // If mealType is other, ensure a customMealName exists
+                if (formData.mealType === 'other' && !formData.customMealName) {
+                    alert('Please enter a name for the meal (Other) before continuing');
+                    return;
+                }
+                goToStep(3);
+            });
+        }
+
+        // --------------------
+        // Native time picker modal using input[type="time"]
+        // Returns Promise that resolves to "HH:MM" (24h) or null if canceled
+        // --------------------
+        function showTimePickerModal() {
+            return new Promise(resolve => {
+                // Create modal elements
+                let modal = document.getElementById('timePickerModal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'timePickerModal';
+                    modal.style.position = 'fixed';
+                    modal.style.left = '0';
+                    modal.style.top = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.display = 'flex';
+                    modal.style.alignItems = 'center';
+                    modal.style.justifyContent = 'center';
+                    modal.style.background = 'rgba(0,0,0,0.4)';
+                    modal.style.zIndex = '1000';
+
+                    const box = document.createElement('div');
+                    box.style.background = 'white';
+                    box.style.padding = '20px';
+                    box.style.borderRadius = '12px';
+                    box.style.minWidth = '260px';
+                    box.style.display = 'flex';
+                    box.style.flexDirection = 'column';
+                    box.style.gap = '12px';
+                    box.style.alignItems = 'stretch';
+
+                    const label = document.createElement('div');
+                    label.textContent = 'Select a time';
+                    label.style.fontWeight = '600';
+
+                    const timeInput = document.createElement('input');
+                    timeInput.type = 'time';
+                    timeInput.id = 'modalTimeInput';
+                    timeInput.style.fontSize = '16px';
+                    timeInput.style.padding = '8px';
+
+                    const actions = document.createElement('div');
+                    actions.style.display = 'flex';
+                    actions.style.justifyContent = 'flex-end';
+                    actions.style.gap = '8px';
+
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.type = 'button';
+                    cancelBtn.textContent = 'Cancel';
+                    cancelBtn.className = 'continue-btn';
+                    cancelBtn.style.background = '#ddd';
+                    cancelBtn.style.color = '#000';
+
+                    const saveBtn = document.createElement('button');
+                    saveBtn.type = 'button';
+                    saveBtn.textContent = 'Save';
+                    saveBtn.className = 'continue-btn';
+
+                    actions.appendChild(cancelBtn);
+                    actions.appendChild(saveBtn);
+                    box.appendChild(label);
+                    box.appendChild(timeInput);
+                    box.appendChild(actions);
+                    modal.appendChild(box);
+                    document.body.appendChild(modal);
+
+                    // Cancel handler
+                    cancelBtn.addEventListener('click', () => {
+                        modal.remove();
+                        resolve(null);
+                    });
+
+                    // Save handler
+                    saveBtn.addEventListener('click', () => {
+                        const val = timeInput.value; // "HH:MM"
+                        modal.remove();
+                        if (val) resolve(val);
+                        else resolve(null);
+                    });
+
+                    // allow clicking outside to cancel
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                            resolve(null);
+                        }
+                    });
+                }
+                // focus input
+                const input = document.getElementById('modalTimeInput');
+                if (input) input.focus();
+            });
+        }
+
+        // --------------------
+        // STEP 3: Frequency, days, allowance (unchanged logic, minor fixes)
+        // --------------------
+        document.querySelectorAll('#step3 .time-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+
+                if (parent.previousElementSibling?.textContent?.toLowerCase().includes('often')) {
+                    formData.frequency = this.dataset.value;
+                } else if (parent.previousElementSibling?.textContent?.toLowerCase().includes('allowance')) {
+                    formData.allowanceType = this.dataset.value;
+                }
+                checkStep3Complete();
+            });
+        });
+
+        document.querySelectorAll('#step3 .day-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const day = this.dataset.value;
+                if (formData.days.includes(day)) {
+                    formData.days = formData.days.filter(d => d !== day);
+                } else {
+                    formData.days.push(day);
+                }
+                checkStep3Complete();
+            });
+        });
+
+        const slider = document.getElementById('allowanceSlider');
+        const sliderValue = document.getElementById('sliderValue');
+
+        if (slider) {
+            slider.addEventListener('input', function() {
+                formData.allowanceAmount = this.value;
+                sliderValue.textContent = `$${this.value}`;
+                const percentage = (this.value / 50) * 100;
+                this.style.background = `linear-gradient(to right, #FF8702 0%, #FF8702 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
+                checkStep3Complete();
+            });
+        }
+
+        function toggleCredit() {
+            const toggle = document.getElementById('creditToggle');
+            if (!toggle) return;
+            toggle.classList.toggle('on');
+            toggle.classList.toggle('off');
+            formData.creditCard = toggle.classList.contains('on');
+        }
+
+        function checkStep3Complete() {
+            const complete = formData.frequency && formData.days.length > 0 && formData.allowanceType;
+            const step3Btn = document.getElementById('step3Btn');
+            if (step3Btn) step3Btn.disabled = !complete;
+        }
+
+        const step3Btn = document.getElementById('step3Btn');
+        if (step3Btn) step3Btn.addEventListener('click', () => goToStep(4));
+
+        // --------------------
+        // STEP 4: Food preferences and dietary restrictions
+        // --------------------
+        document.querySelectorAll('#step4 .dietary-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                const dietary = this.dataset.value;
+                if (formData.dietary.includes(dietary)) {
+                    formData.dietary = formData.dietary.filter(d => d !== dietary);
+                } else {
+                    formData.dietary.push(dietary);
+                }
+            });
+        });
+
+        document.querySelectorAll('#step4 .preference-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const buttons = this.parentElement.querySelectorAll('.preference-btn');
+                buttons.forEach(b => b.style.background = 'white');
+                this.style.background = '#f0f0f0';
+            });
+        });
+
+        // Navigation function
+        function goToStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+            const el = document.getElementById('step' + step);
+            if (el) el.classList.remove('hidden');
+            currentStep = step;
+
+            // Update testimonial or info card
+            if (step === 4) {
+                document.getElementById('testimonialContent').classList.add('hidden');
+                document.getElementById('infoCard').classList.remove('hidden');
+            } else if (step === 5) {
+                document.getElementById('testimonialContent').classList.add('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+            } else {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+
+                // Rotate testimonials
+                const testimonialIndex = (step - 1) % testimonials.length;
+                document.getElementById('testimonialText').textContent = testimonials[testimonialIndex].text;
+                document.getElementById('testimonialAuthor').textContent = '- ' + testimonials[testimonialIndex].author;
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        // Carousel dots functionality for step 4
+        let carouselIndex = 0;
+        document.querySelectorAll('#step4 .dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                document.querySelectorAll('#step4 .dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                carouselIndex = index;
+            });
+        });
+
+        // Initialize UI: show step1 and pre-render nothing
+        document.getElementById('step1').classList.remove('hidden');
+
+        // Optionally pre-select first meal card/time when user goes to step 2 without selecting (kept explicit)
+    </script>
+
+
+<!-- Carousel JS -->
+<script>
+const foodCategories = document.querySelector('.food-categories');
+const dots = document.querySelectorAll('.dot');
+const leftBtn = document.querySelector('.left-btn');
+const rightBtn = document.querySelector('.right-btn');
+
+let currentIndex = 0;
+const totalDots = dots.length;
+
+function updateCarousel() {
+  const offset = currentIndex * -100; // shift by 100% for each dot
+  foodCategories.style.transform = `translateX(${offset}%)`;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+}
+
+rightBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % totalDots;
+  updateCarousel();
+});
+
+leftBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + totalDots) % totalDots;
+  updateCarousel();
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentIndex = i;
+    updateCarousel();
+  });
+});
+
+updateCarousel();
+</script>
+
 </body>
 </html>

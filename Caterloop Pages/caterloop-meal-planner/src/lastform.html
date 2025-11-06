@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaterLoop - Get Started</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div class="logo">
+                <img src="/Caterloop Pages/images/footer_logo.png" alt="">
+            </div>
+
+            <!-- Step 1 -->
+            <div id="step1" class="step">
+                <h1>Select Your Meal</h1>
+                <div class="meal-options">
+                    <div class="meal-card" data-value="breakfast">
+                        <div class="meal-icon">🍳</div>
+                        <div class="meal-label">Breakfast</div>
+                    </div>
+                    <div class="meal-card" data-value="lunch">
+                        <div class="meal-icon">🥗</div>
+                        <div class="meal-label">Lunch</div>
+                    </div>
+                    <div class="meal-card" data-value="dinner">
+                        <div class="meal-icon">🍽️</div>
+                        <div class="meal-label">Dinner</div>
+                    </div>
+                    <div class="meal-card" data-value="snack">
+                        <div class="meal-icon">🍪</div>
+                        <div class="meal-label">Snack</div>
+                    </div>
+                </div>
+
+                <div class="question">Select Your Time</div>
+                <div class="time-options">
+                    <button class="time-btn" data-value="4:00 pm">4:00 pm</button>
+                    <button class="time-btn" data-value="5:00 pm">5:00 pm</button>
+                    <button class="time-btn" data-value="6:00 pm">6:00 pm</button>
+                    <button class="time-btn" data-value="custom">Select Your Time</button>
+                </div>
+
+                <div class="custom-time hidden" id="customTimeContainer">
+                    <input type="text" id="customTimeInput" placeholder="HH:MM AM/PM" class="text-input">
+                </div>
+
+                <div class="question">Meal Name</div>
+                <input type="text" id="mealNameInput" class="text-input" placeholder="Enter meal name">
+
+                <button class="continue-btn" id="step1Btn">Continue</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="step hidden">
+                <h1>Meal Details</h1>
+                <!-- Additional meal details can be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/timepicker.js"></script>
+</body>
+</html>

@@ -4,347 +4,759 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Order Form</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-         * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background: #000;
-        color: #fff;
-        overflow-x: hidden;
-        min-height: 100vh;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            overflow: hidden;
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+        }
 
-    /* Progress bar */
-    .progress-container {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 6px;
-        z-index: 1000;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 90%;
-    }
+        .progress-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90vw;
+        }
 
-    .progress-dash {
-        width: 10px;
-        height: 4px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 2px;
-        transition: all 0.3s ease;
-    }
+        .progress-dash {
+            width: 12px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
 
-    .progress-dash.completed {
-        background: #4CAF50;
-        box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
-    }
+        .progress-dash.completed {
+            background: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+        }
 
-    /* Question wrapper */
-    .questions-wrapper {
-        width: 100%;
-        position: relative;
-        overflow-y: auto;
-        padding: 80px 20px 60px;
-        scroll-behavior: smooth;
-    }
+        .questions-wrapper {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .question-container {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        transform: translateY(40px);
-    }
+        .question-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 40px;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            pointer-events: none;
+        }
 
-    .question-container.active {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
+        .question-container.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+            position: relative;
+        }
 
-    .question-content {
-        max-width: 700px;
-        width: 100%;
-        margin: 0 auto;
-    }
+        .question-content {
+            max-width: 700px;
+            width: 100%;
+        }
 
-    .question-number {
-        font-size: 13px;
-        opacity: 0.6;
-        margin-bottom: 10px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
+        .question-number {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
 
-    .question-text {
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 1.3;
-        margin-bottom: 30px;
-    }
+        .question-text {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
 
-    .options-container {
-        display: grid;
-        gap: 14px;
-    }
+        .input-field {
+            margin-bottom: 20px;
+        }
 
-    .option-btn {
-        padding: 18px 22px;
-        font-size: 1rem;
-        background: rgba(255,255,255,0.03);
-        border: 2px solid rgba(255,255,255,0.15);
-        border-radius: 10px;
-        color: #fff;
-        text-align: left;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+        .input-field input:not([type="date"]):not([type="time"]),
+        .input-field textarea.materialize-textarea {
+            color: #000000 !important;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3) !important;
+            font-size: 18px !important;
+            padding-left: 3rem !important;
+        }
 
-    .option-btn:hover {
-        background: rgba(255,255,255,0.08);
-        transform: translateX(5px);
-    }
+        .input-field input:not([type="date"]):not([type="time"]):focus,
+        .input-field textarea.materialize-textarea:focus {
+            border-bottom: 2px solid #000000 !important;
+            box-shadow: 0 1px 0 0 #000000 !important;
+        }
 
-    .option-btn.selected {
-        background: rgba(76, 175, 80, 0.15);
-        border-color: #4CAF50;
-    }
+        .input-field label {
+            color: rgba(0, 0, 0, 0.5) !important;
+            font-size: 16px !important;
+            left: 3rem !important;
+        }
 
-    .input-field input,
-    .input-field textarea.materialize-textarea {
-        color: #fff !important;
-        border-bottom: 2px solid rgba(255,255,255,0.3) !important;
-        font-size: 1rem !important;
-        padding-left: 3rem !important;
-    }
+        .input-field label.active {
+            color: #000000 !important;
+        }
 
-    .input-field label {
-        color: rgba(255,255,255,0.5) !important;
-    }
+        .input-field .prefix {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 24px;
+        }
 
-    .continue-btn {
-        margin-top: 30px;
-        padding: 14px 36px;
-        font-size: 1rem;
-        background: #fff;
-        color: #000;
-        border-radius: 10px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        opacity: 0;
-        pointer-events: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
+        .input-field .prefix.active {
+            color: #000000;
+        }
 
-    .continue-btn.visible {
-        opacity: 1;
-        pointer-events: all;
-    }
+        .input-field input.valid,
+        .input-field textarea.materialize-textarea.valid {
+            border-bottom: 2px solid #4CAF50 !important;
+            box-shadow: 0 1px 0 0 #4CAF50 !important;
+        }
 
-    .completion-screen {
-        min-height: 100vh;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 40px 20px;
-    }
+        .input-field input.invalid,
+        .input-field textarea.materialize-textarea.invalid {
+            border-bottom: 2px solid #F44336 !important;
+            box-shadow: 0 1px 0 0 #F44336 !important;
+        }
 
-    .completion-screen.active {
-        display: flex;
-        flex-direction: column;
-    }
+        .helper-text {
+            color: rgba(0, 0, 0, 0.5) !important;
+            font-size: 13px;
+            margin-left: 3rem;
+        }
 
-    .checkmark {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: #4CAF50;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-    }
+        .options-container {
+            display: grid;
+            gap: 14px;
+        }
 
-    .checkmark .material-icons {
-        font-size: 50px;
-        color: #fff;
-    }
+        .option-btn {
+            padding: 20px 24px;
+            font-size: 17px;
+            background: rgba(182, 182, 182, 0.03);
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            color: #000000;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            overflow: hidden;
+        }
 
-    .completion-text {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #4CAF50;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
 
-    .completion-subtext {
-        font-size: 1rem;
-        opacity: 0.8;
-        line-height: 1.6;
-    }
+        .option-btn:hover {
+            border-color: rgba(70, 70, 70, 0.4);
+            background: rgba(215, 215, 215, 0.08);
+            transform: translateX(8px);
+        }
 
-    /* -------- RESPONSIVE -------- */
-    @media (max-width: 1024px) {
-        .question-text { font-size: 1.8rem; }
-    }
+        .option-btn.selected {
+            background: rgba(205, 205, 205, 0.15);
+            border-color: #4CAF50;
+        }
 
-    @media (max-width: 768px) {
-        .questions-wrapper { padding: 70px 16px 50px; }
-        .question-text { font-size: 1.6rem; margin-bottom: 25px; }
-        .option-btn { font-size: 0.95rem; padding: 16px 18px; }
-        .continue-btn { width: 100%; justify-content: center; }
-    }
+        .option-btn.selected::before {
+            transform: scaleY(1);
+        }
 
-    @media (max-width: 480px) {
-        .question-text { font-size: 1.4rem; }
-        .question-number { font-size: 11px; }
-        .option-btn { font-size: 0.9rem; padding: 14px 16px; }
-        .continue-btn { font-size: 0.9rem; padding: 12px; }
-        .checkmark { width: 60px; height: 60px; }
-        .completion-text { font-size: 1.5rem; }
-        .completion-subtext { font-size: 0.95rem; }
-    }
+        .continue-btn {
+            margin-top: 30px;
+            padding: 16px 40px;
+            font-size: 15px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    @media (max-width: 360px) {
-        .question-text { font-size: 1.2rem; }
-        .option-btn { font-size: 0.85rem; padding: 12px; }
-    }
+        .continue-btn.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255,255,255,0.3);
+        }
+
+        .continue-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .completion-screen {
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .completion-screen.active {
+            display: flex;
+        }
+
+        .completion-content {
+            max-width: 600px;
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #2304d4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .checkmark .material-icons {
+            font-size: 60px;
+            color: #000000;
+            animation: fadeIn 0.3s ease 0.4s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .completion-text {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .completion-subtext {
+            font-size: 18px;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .error-message {
+            color: #F44336;
+            font-size: 13px;
+            margin-top: 8px;
+            margin-left: 3rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .custom-calendar {
+            display: none;
+            background: rgba(0, 0, 0, 0.95);
+            color: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 350px;
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .custom-calendar.active {
+               display: block;
+    position: absolute;
+    animation: slideUp 0.3s ease;
+    top: 40%;
+    right: 30%;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            color: #fffbfb;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .calendar-header button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .calendar-month-year {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .calendar-weekday {
+            text-align: center;
+            font-weight: 600;
+            color: #666;
+            font-size: 12px;
+            padding: 8px 0;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.empty) {
+            background: #4CAF50;
+            color: rgb(0, 0, 0);
+            transform: scale(1.1);
+        }
+
+        .calendar-day.selected {
+            background: #4CAF50;
+            color: rgb(0, 0, 0);
+            font-weight: 600;
+        }
+
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .custom-clock {
+            display: none;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 350px;
+            margin: 20px auto;
+            box-shadow: 0 10px 40px rgba(221, 221, 221, 0.5);
+        }
+
+        .custom-clock.active {
+           
+                display: block;
+    position: absolute;
+    animation: slideUp 0.3s ease;
+    top: 40%;
+    right: 40%;
+        }
+
+        .clock-display {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-family: 'Inter', monospace;
+        }
+
+        .time-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .time-section {
+            text-align: center;
+        }
+
+        .time-label {
+            color: #666;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .time-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            min-width: 60px;
+        }
+
+        .time-btn {
+            background: #4CAF50;
+            color: rgb(0, 0, 0);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .time-btn:hover {
+            background: #45a049;
+            transform: scale(1.1);
+        }
+
+        .time-btn:active {
+            transform: scale(0.95);
+        }
+
+        .period-selector {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .period-btn {
+            padding: 12px 30px;
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .period-btn.active {
+            background: #4CAF50;
+            color: rgb(0, 0, 0);
+            border-color: #4CAF50;
+        }
+
+        .clock-confirm {
+            width: 100%;
+            padding: 15px;
+            background: #ffffff;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .clock-confirm:hover {
+            background: #333;
+            color: #ffffff;
+        }
+
+        .custom-input-display {
+            color: #000000 !important;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+            font-size: 18px !important;
+            padding: 12px 0 12px 3rem !important;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .custom-input-display:hover {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .custom-input-display.filled {
+            border-bottom: 2px solid #4CAF50 !important;
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .question-text {
+                font-size: 36px;
+            }
+
+            .progress-dash {
+                width: 14px;
+                height: 4px;
+            }
+
+            .option-btn {
+                font-size: 18px;
+                padding: 22px 26px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .progress-container {
+                top: 15px;
+                gap: 5px;
+            }
+
+            .progress-dash {
+                width: 8px;
+                height: 3px;
+            }
+
+            .question-container {
+                padding: 70px 30px 30px;
+            }
+
+            .question-number {
+                font-size: 11px;
+            }
+
+            .question-text {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+
+            .input-field input:not([type="date"]):not([type="time"]),
+            .input-field textarea.materialize-textarea {
+                font-size: 16px !important;
+            }
+
+            .option-btn {
+                font-size: 15px;
+                padding: 16px 20px;
+            }
+
+            .option-btn:hover {
+                transform: translateX(4px);
+            }
+
+            .continue-btn {
+                padding: 14px 32px;
+                font-size: 14px;
+            }
+
+            .completion-text {
+                font-size: 32px;
+            }
+
+            .completion-subtext {
+                font-size: 16px;
+            }
+
+            .checkmark {
+                width: 80px;
+                height: 80px;
+            }
+
+            .checkmark .material-icons {
+                font-size: 50px;
+            }
+
+            .custom-calendar,
+            .custom-clock {
+                max-width: 95%;
+                padding: 15px;
+            }
+
+            .clock-display {
+                font-size: 36px;
+            }
+
+            .time-value {
+                font-size: 28px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .question-content {
+                max-width: 900px;
+            }
+
+            .question-text {
+                font-size: 44px;
+            }
+
+            .progress-dash {
+                width: 16px;
+                height: 5px;
+            }
+
+            .option-btn {
+                font-size: 20px;
+                padding: 26px 32px;
+            }
+
+            .continue-btn {
+                padding: 20px 52px;
+                font-size: 17px;
+            }
+        }
+        label{
+            color: #000000 !important;
+        }
     </style>
 </head>
 <body>
     <div class="progress-container" id="progressContainer"></div>
+    
     <div class="questions-wrapper" id="questionsWrapper"></div>
 
     <div class="completion-screen" id="completionScreen">
         <div class="completion-content">
             <div class="checkmark">
-                <span class="material-icons">check</span>
+                
             </div>
-            <div class="completion-text">Order Received!</div>
-            <div class="completion-subtext">
-                Thank you for your order. We'll prepare everything fresh and have it ready for you.
-                You'll receive a confirmation email shortly.
-            </div>
+            <!-- <div class="completion-text">Order Received!</div>
+            <div class="completion-subtext">Thank you for your order. We'll prepare everything fresh and have it ready for you. You'll receive a confirmation email shortly.</div> -->
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <!-- Your existing JS logic stays identical -->
     <script>
         const questions = [
-            { type: 'text', question: 'What\'s your name?', label: 'Enter your full name', icon: 'person', required: true },
-            { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
+            { type: 'date', question: 'What day is your event or catering requirement ?', label: 'Select date', icon: 'event', required: true },
+            { 
+                type: 'options', 
+                question: 'Type of service',
+                options: ['Hors d oeuvres / appetizers', 'Shared meal trays', 'Individual meal boxes']
+            },
+            { type: 'number', question: 'How many people are you looking to provide catering for ?', label: 'Enter your the number of person', icon: 'person', required: true },
+             { 
+                type: 'options', 
+                question: 'Budget',
+                options: ['I have a per person budget', 'I have total budget for the event']
+            },
+
+             { type: 'text', question: 'What is your total catering budget', label: 'Write you budget', icon: 'celebration' },
+             { type: 'text', question: 'Your kitchen amenities', helper: 'What do you have available on-site', label: 'Write what you have available', icon: 'celebration' },
+              { 
+                type: 'checkbox', 
+                question: 'Rental needs',helper: 'Choose as many as you like',
+                options: ['Glassware', 'Silverware/Plates', 'Tablecloths']
+            },
+              { 
+                type: 'options', 
+                question: 'Beverages',helper: 'Choose as many as you like',
+                options: ['Beverage station', 'Bar', 'Coffee/Tea', 'None']
+            },
+
+             { type: 'text', question: 'Name of you organization?', label: 'Write your organization name', icon: 'restaurant_menu' },
+             { type: 'text', question: 'Address', label: 'Where will the catering be delivered to ?', icon: 'restaurant_menu' },
+             { type: 'text', question: 'Your first name', label: 'Your first name', icon: 'person' },
+             { type: 'text', question: 'Your last name', label: 'Your last name', icon: 'person' },
+             
+             { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
+             { type: 'text', question: 'What is your role ? ', label: 'Your role', icon: 'person' },
+
+
             { type: 'tel', question: 'What\'s your phone number?', label: '+1 (555) 000-0000', icon: 'phone', required: true, validation: 'phone' },
-            { 
-                type: 'options', 
-                question: 'Is this for dine-in or takeaway?',
-                options: ['Dine-in', 'Takeaway', 'Delivery', 'Curbside Pickup', 'Reserve Table']
-            },
-            { type: 'date', question: 'When would you like to visit us?', label: 'Select date', helper: 'Select a date from tomorrow onwards', icon: 'event', required: true },
-            { type: 'time', question: 'What time works best for you?', label: 'Select time', helper: 'We\'re open from 11:00 AM to 11:00 PM', icon: 'access_time', required: true },
-            { type: 'number', question: 'How many people will be joining?', label: 'Number of guests', icon: 'group', required: true },
-            { 
-                type: 'options', 
-                question: 'What type of cuisine are you interested in?',
-                options: ['Italian', 'Chinese', 'Indian', 'Mexican', 'Continental']
-            },
-            { 
-                type: 'options', 
-                question: 'Any dietary preferences?',
-                options: ['No Preference', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Halal']
-            },
-            { 
-                type: 'options', 
-                question: 'What\'s your preferred seating?',
-                options: ['Indoor', 'Outdoor Patio', 'Bar Area', 'Private Room', 'Window Side']
-            },
-            { type: 'text', question: 'Do you have a special occasion?', label: 'Birthday, Anniversary, etc.', icon: 'celebration' },
-            { 
-                type: 'options', 
-                question: 'Would you like to pre-order appetizers?',
-                options: ['Yes, please', 'I\'ll order at the restaurant', 'No, thank you', 'Need recommendations', 'Surprise me']
-            },
-            { 
-                type: 'options', 
-                question: 'Preferred beverage type?',
-                options: ['Soft Drinks', 'Wine', 'Beer', 'Cocktails', 'Non-Alcoholic']
-            },
-            { type: 'text', question: 'Any specific dishes you\'d like to try?', label: 'Let us know your preferences', icon: 'restaurant_menu' },
-            { 
-                type: 'options', 
-                question: 'Spice level preference?',
-                options: ['Mild', 'Medium', 'Hot', 'Extra Hot', 'No Spice']
-            },
-            { type: 'textarea', question: 'Any food allergies or restrictions we should know about?', label: 'Please list any allergies or dietary restrictions...', icon: 'warning' },
-            { 
-                type: 'options', 
-                question: 'Would you like a dessert recommendation?',
-                options: ['Yes, something sweet', 'Yes, something light', 'Chocolate based', 'Fruit based', 'No dessert']
-            },
-            { type: 'text', question: 'Preferred chef\'s specialty?', label: 'Enter chef name or specialty', icon: 'restaurant' },
-            { 
-                type: 'options', 
-                question: 'How did you hear about us?',
-                options: ['Social Media', 'Google Search', 'Friend Recommendation', 'Food Blog', 'Walking By']
-            },
-            { 
-                type: 'options', 
-                question: 'Is this your first visit?',
-                options: ['Yes, first time', 'Second visit', 'Regular customer', 'Special occasion return', 'Been here many times']
-            },
-            { type: 'text', question: 'Do you have any discount or promo code?', label: 'Enter code if available', icon: 'local_offer' },
-            { 
-                type: 'options', 
-                question: 'Preferred music ambiance?',
-                options: ['Jazz', 'Classical', 'Pop', 'Quiet/Minimal', 'Live Performance']
-            },
-            { type: 'text', question: 'Any special table decorations needed?', label: 'Flowers, candles, etc.', icon: 'local_florist' },
-            { 
-                type: 'options', 
-                question: 'Would you like a window with a view?',
-                options: ['Yes, if available', 'Yes, willing to wait', 'No preference', 'Indoor preferred', 'Surprise me']
-            },
-            { type: 'textarea', question: 'Any special requests for the chef?', label: 'Special preparations, extra ingredients, etc...', icon: 'notes' },
-            { 
-                type: 'options', 
-                question: 'Preferred payment method?',
-                options: ['Credit/Debit Card', 'Cash', 'Digital Wallet', 'Split Bill', 'Corporate Account']
-            },
-            { type: 'text', question: 'Would you like valet parking?', label: 'Yes or No', icon: 'local_parking' },
-            { 
-                type: 'options', 
-                question: 'Join our loyalty program?',
-                options: ['Yes, sign me up', 'Already a member', 'Tell me more', 'Maybe next time', 'No, thank you']
-            },
-            { type: 'textarea', question: 'Any additional comments or special arrangements?', label: 'Anything else we should know to make your experience perfect...', icon: 'comment' },
-            { 
-                type: 'options', 
-                question: 'Would you like to receive updates and offers?',
-                options: ['Yes, all updates', 'Only special offers', 'Monthly newsletter', 'Event invitations only', 'No, thank you']
-            }
+            
+            
+            { type: 'time', question: 'What time works best for you?', label: 'Select time', helper: 'We\'re open from 11:00 AM to 11:00 PM', icon: 'access_time', required: true }
+          
         ];
 
         const answers = {};
         let currentQuestion = 0;
+        let currentCalendarDate = new Date();
+        let selectedHour = 12;
+        let selectedMinute = 0;
+        let selectedPeriod = 'PM';
 
         function getTomorrowDate() {
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            return tomorrow.toISOString().split('T')[0];
+            return tomorrow;
         }
 
         function validateEmail(email) {
@@ -376,6 +788,113 @@
                     dash.classList.remove('completed');
                 }
             }
+        }
+
+        function renderCalendar(index) {
+            const calendar = document.getElementById(`calendar-${index}`);
+            const month = currentCalendarDate.getMonth();
+            const year = currentCalendarDate.getFullYear();
+            const today = new Date();
+            const tomorrow = getTomorrowDate();
+            
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            document.getElementById(`month-year-${index}`).textContent = `${monthNames[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            const daysContainer = document.getElementById(`calendar-days-${index}`);
+            daysContainer.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                daysContainer.appendChild(emptyDay);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                const currentDate = new Date(year, month, day);
+                if (currentDate < tomorrow) {
+                    dayElement.classList.add('disabled');
+                } else {
+                    dayElement.onclick = () => selectDate(index, year, month, day);
+                }
+                
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(index, year, month, day) {
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const displayStr = `${day} ${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][month]} ${year}`;
+            
+            document.getElementById(`date-display-${index}`).textContent = displayStr;
+            document.getElementById(`date-display-${index}`).classList.add('filled');
+            document.getElementById(`calendar-${index}`).classList.remove('active');
+            
+            answers[index] = dateStr;
+            
+            const continueBtn = document.getElementById(`continue-${index}`);
+            continueBtn.classList.add('visible');
+            
+            setTimeout(() => validateAndContinue(index), 600);
+        }
+
+        function changeMonth(index, direction) {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + direction);
+            renderCalendar(index);
+        }
+
+        function updateClockDisplay(index) {
+            const hour = String(selectedHour).padStart(2, '0');
+            const minute = String(selectedMinute).padStart(2, '0');
+            document.getElementById(`clock-display-${index}`).textContent = `${hour}:${minute} ${selectedPeriod}`;
+            document.getElementById(`hour-display-${index}`).textContent = hour;
+            document.getElementById(`minute-display-${index}`).textContent = minute;
+        }
+
+        function adjustTime(index, type, direction) {
+            if (type === 'hour') {
+                selectedHour += direction;
+                if (selectedHour > 12) selectedHour = 1;
+                if (selectedHour < 1) selectedHour = 12;
+            } else {
+                selectedMinute += direction * 5;
+                if (selectedMinute >= 60) selectedMinute = 0;
+                if (selectedMinute < 0) selectedMinute = 55;
+            }
+            updateClockDisplay(index);
+        }
+
+        function togglePeriod(index, period) {
+            selectedPeriod = period;
+            const buttons = document.querySelectorAll(`#question-${index} .period-btn`);
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            updateClockDisplay(index);
+        }
+
+        function confirmTime(index) {
+            const hour = String(selectedHour).padStart(2, '0');
+            const minute = String(selectedMinute).padStart(2, '0');
+            const timeStr = `${hour}:${minute} ${selectedPeriod}`;
+            
+            document.getElementById(`time-display-${index}`).textContent = timeStr;
+            document.getElementById(`time-display-${index}`).classList.add('filled');
+            document.getElementById(`clock-${index}`).classList.remove('active');
+            
+            answers[index] = timeStr;
+            
+            const continueBtn = document.getElementById(`continue-${index}`);
+            continueBtn.classList.add('visible');
+            
+            setTimeout(() => validateAndContinue(index), 600);
         }
 
         function initQuestions() {
@@ -411,20 +930,79 @@
                     inputHTML = `
                         <div class="input-field">
                             <i class="material-icons prefix">${q.icon}</i>
-                            <input type="date" id="input-${index}" min="${getTomorrowDate()}" onchange="handleInput(${index})" />
-                            <label for="input-${index}" class="active">${q.label}</label>
-                            ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
+                            <div class="custom-input-display" id="date-display-${index}" onclick="document.getElementById('calendar-${index}').classList.toggle('active')">
+                                Click to select date
+                            </div>
+                            <input type="date" id="input-${index}" style="display: none;" />
                         </div>
+                        <div class="custom-calendar" id="calendar-${index}">
+                            <div class="calendar-header">
+                                <button onclick="changeMonth(${index}, -1)">
+                                    <span class="material-icons">chevron_left</span>
+                                </button>
+                                <div class="calendar-month-year" id="month-year-${index}"></div>
+                                <button onclick="changeMonth(${index}, 1)">
+                                    <span class="material-icons">chevron_right</span>
+                                </button>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <div class="calendar-weekday">Sun</div>
+                                <div class="calendar-weekday">Mon</div>
+                                <div class="calendar-weekday">Tue</div>
+                                <div class="calendar-weekday">Wed</div>
+                                <div class="calendar-weekday">Thu</div>
+                                <div class="calendar-weekday">Fri</div>
+                                <div class="calendar-weekday">Sat</div>
+                            </div>
+                            <div class="calendar-days" id="calendar-days-${index}"></div>
+                        </div>
+                        ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
                         <div class="error-message" id="error-${index}"></div>
                     `;
                 } else if (q.type === 'time') {
                     inputHTML = `
                         <div class="input-field">
                             <i class="material-icons prefix">${q.icon}</i>
-                            <input type="time" id="input-${index}" onchange="handleInput(${index})" />
-                            <label for="input-${index}" class="active">${q.label}</label>
-                            ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
+                            <div class="custom-input-display" id="time-display-${index}" onclick="document.getElementById('clock-${index}').classList.toggle('active')">
+                                Click to select time
+                            </div>
+                            <input type="time" id="input-${index}" style="display: none;" />
                         </div>
+                        <div class="custom-clock" id="clock-${index}">
+                            <div class="clock-display" id="clock-display-${index}">12:00 PM</div>
+                            <div class="time-selector">
+                                <div class="time-section">
+                                    <div class="time-label">Hour</div>
+                                    <div class="time-controls">
+                                        <button class="time-btn" onclick="adjustTime(${index}, 'hour', 1)">
+                                            <span class="material-icons">arrow_drop_up</span>
+                                        </button>
+                                        <div class="time-value" id="hour-display-${index}">12</div>
+                                        <button class="time-btn" onclick="adjustTime(${index}, 'hour', -1)">
+                                            <span class="material-icons">arrow_drop_down</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="time-section">
+                                    <div class="time-label">Minute</div>
+                                    <div class="time-controls">
+                                        <button class="time-btn" onclick="adjustTime(${index}, 'minute', 1)">
+                                            <span class="material-icons">arrow_drop_up</span>
+                                        </button>
+                                        <div class="time-value" id="minute-display-${index}">00</div>
+                                        <button class="time-btn" onclick="adjustTime(${index}, 'minute', -1)">
+                                            <span class="material-icons">arrow_drop_down</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="period-selector">
+                                <button class="period-btn" onclick="togglePeriod(${index}, 'AM')">AM</button>
+                                <button class="period-btn active" onclick="togglePeriod(${index}, 'PM')">PM</button>
+                            </div>
+                            <button class="clock-confirm" onclick="confirmTime(${index})">Confirm Time</button>
+                        </div>
+                        ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
                         <div class="error-message" id="error-${index}"></div>
                     `;
                 } else {
@@ -464,6 +1042,15 @@
             setTimeout(() => {
                 document.getElementById(`question-${index}`).classList.add('active');
                 M.updateTextFields();
+                
+                if (questions[index].type === 'date') {
+                    currentCalendarDate = getTomorrowDate();
+                    renderCalendar(index);
+                }
+                
+                if (questions[index].type === 'time') {
+                    updateClockDisplay(index);
+                }
             }, 100);
             
             updateProgressBar();
@@ -472,17 +1059,12 @@
         function handleInput(index) {
             const input = document.getElementById(`input-${index}`);
             const continueBtn = document.getElementById(`continue-${index}`);
-            const question = questions[index];
             const errorMsg = document.getElementById(`error-${index}`);
             
             errorMsg.classList.remove('show');
             
             if (input.value.trim() !== '') {
                 continueBtn.classList.add('visible');
-                
-                if (input.type === 'date' || input.type === 'time') {
-                    setTimeout(() => validateAndContinue(index), 600);
-                }
             } else {
                 continueBtn.classList.remove('visible');
             }
@@ -495,40 +1077,43 @@
             
             errorMsg.classList.remove('show');
             
-            if (!input.value.trim() && question.required) {
-                errorMsg.textContent = 'This field is required';
-                errorMsg.classList.add('show');
-                input.classList.add('invalid');
-                return;
-            }
-            
-            if (question.validation === 'email') {
-                if (!validateEmail(input.value)) {
-                    errorMsg.textContent = 'Please enter a valid email address';
+            if (question.type !== 'date' && question.type !== 'time') {
+                if (!input.value.trim() && question.required) {
+                    errorMsg.textContent = 'This field is required';
                     errorMsg.classList.add('show');
                     input.classList.add('invalid');
-                    input.classList.remove('valid');
                     return;
-                } else {
-                    input.classList.add('valid');
-                    input.classList.remove('invalid');
                 }
+                
+                if (question.validation === 'email') {
+                    if (!validateEmail(input.value)) {
+                        errorMsg.textContent = 'Please enter a valid email address';
+                        errorMsg.classList.add('show');
+                        input.classList.add('invalid');
+                        input.classList.remove('valid');
+                        return;
+                    } else {
+                        input.classList.add('valid');
+                        input.classList.remove('invalid');
+                    }
+                }
+                
+                if (question.validation === 'phone') {
+                    if (!validatePhone(input.value)) {
+                        errorMsg.textContent = 'Please enter a valid phone number';
+                        errorMsg.classList.add('show');
+                        input.classList.add('invalid');
+                        input.classList.remove('valid');
+                        return;
+                    } else {
+                        input.classList.add('valid');
+                        input.classList.remove('invalid');
+                    }
+                }
+                
+                answers[index] = input.value;
             }
             
-            if (question.validation === 'phone') {
-                if (!validatePhone(input.value)) {
-                    errorMsg.textContent = 'Please enter a valid phone number';
-                    errorMsg.classList.add('show');
-                    input.classList.add('invalid');
-                    input.classList.remove('valid');
-                    return;
-                } else {
-                    input.classList.add('valid');
-                    input.classList.remove('invalid');
-                }
-            }
-            
-            answers[index] = input.value;
             nextQuestion();
         }
 
@@ -567,25 +1152,58 @@
         initQuestions();
     </script>
 
+    <!-- ...existing code... -->
+    <script>
+        // ...existing code...
+async function completeQuestionnaire() {
+    // Hide the questions
 
-<script>
-    function completeQuestionnaire() {
-    // Send data to Laravel
-    fetch('/api/restaurant-order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify(answers)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Show completion screen
-        document.getElementById('questionsWrapper').style.display = 'none';
-        document.getElementById('completionScreen').classList.add('active');
-    });
+    document.getElementById('questionsWrapper').style.display = 'none';
+    
+    // Show completion UI immediately
+    const completionScreen = document.getElementById('completionScreen');
+    completionScreen.classList.add('active');
+
+    // Add a content container if missing
+    let completionContent = completionScreen.querySelector('.completion-content');
+    if (!completionContent) {
+        completionContent = document.createElement('div');
+        completionContent.className = 'completion-content';
+        completionScreen.appendChild(completionContent);
+    }
+
+    completionContent.innerHTML = `
+        <div class="checkmark"><i class="material-icons">check</i></div>
+        <div class="completion-text">Thanks — sending your order…</div>
+        <div class="completion-subtext">Please wait while we submit your details.</div>
+    `;
+
+    // Prepare payload
+    const payload = {
+        answers,
+        submittedAt: new Date().toISOString()
+    };
+console.log('Payload:', JSON.stringify(payload, null, 2));
+
+    const endpoint = '#'; 
+
+    try {
+        const result = await sendFormData(endpoint, payload);
+        completionContent.querySelector('.checkmark').style.backgroundColor = '#00BD2A';
+        completionContent.querySelector('.checkmark').innerHTML = '<i class="material-icons">check</i>';
+        completionContent.querySelector('.completion-text').textContent = 'Order sent!';
+        completionContent.querySelector('.completion-subtext').textContent = 'We received your request.';
+        console.log('Server response:', result);
+    } catch (err) {
+        completionContent.querySelector('.checkmark').style.backgroundColor = '#CF0000';
+        completionContent.querySelector('.checkmark').innerHTML = '<i class="material-icons">close</i>';
+        completionContent.querySelector('.completion-text').textContent = 'Submission failed';
+        completionContent.querySelector('.completion-subtext').textContent = 'Please try again or contact support.';
+        console.error('Submission error:', err);
+    }
 }
-</script>
+
+    </script>
+<!-- ...existing code... -->
 </body>
 </html>
