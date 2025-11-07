@@ -1,0 +1,76 @@
+[
+    {
+        "teamSize": "20-39",
+        "mealType": "lunch",
+        "customMealName": "",
+        "deliveryTime": "12:00",
+        "frequency": "custom-dates",
+        "days": [],
+        "selectedDates": [
+            "2025-11-14",
+            "2025-11-28",
+            "2025-12-14",
+            "2025-12-15",
+            "2025-12-16",
+            "2025-12-21",
+            "2025-12-22",
+            "2025-12-28"
+        ],
+        "startDate": "",
+        "allowanceType": "weekly",
+        "allowanceAmount": "61",
+        "creditCard": true,
+        "dietary": [
+            "gluten"
+        ],
+        "additionalRestrictions": "",
+        "user": {
+            "first_name": "Sumit",
+            "last_name": "Pal",
+            "company_name": "Networsys@123",
+            "email": "sumit.pal@networsys.com",
+            "confirm_email": "sumit.pal@networsys.com",
+            "phone": "98182485652",
+            "delivery_address": "Noida",
+            "unit_suite": "",
+            "delivery_instructions": ""
+        },
+        "received_at": "2025-11-07T10:33:02+01:00"
+    },
+    {
+        "teamSize": "80-99",
+        "mealType": "other",
+        "customMealName": "Snacks",
+        "deliveryTime": "14:59",
+        "frequency": "every-week",
+        "days": [
+            "monday",
+            "sunday",
+            "tuesday",
+            "friday"
+        ],
+        "selectedDates": [],
+        "startDate": "",
+        "allowanceType": "weekly",
+        "allowanceAmount": "90",
+        "creditCard": false,
+        "dietary": [
+            "vegan",
+            "halal",
+            "dairy"
+        ],
+        "additionalRestrictions": "",
+        "user": {
+            "first_name": "Shekhar",
+            "last_name": "Sharma",
+            "company_name": "Networsys",
+            "email": "shekhar.sharma@networsys.com",
+            "confirm_email": "shekhar.sharma@networsys.com",
+            "phone": "94946565465",
+            "delivery_address": "Office no. 302, Tower C, Noida Sector 62, Uttar Pradesh",
+            "unit_suite": "Tower C",
+            "delivery_instructions": "Deliver at door step only knock once for delivery"
+        },
+        "received_at": "2025-11-07T10:41:18+01:00"
+    }
+]

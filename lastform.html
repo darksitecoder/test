@@ -844,6 +844,38 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
+
+        .user-detail-form{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .user-detail-form{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .user-detail-form .input{
+               width: 90%;
+    padding: 12px 16px;
+    display: flex;
+    gap: 20px;
+        }
+        .user-detail-form .input input{
+                width: 100%;
+    padding: 16px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input input:focus{
+               outline: none;
+               border: 1px solid #FF8702;
+        }
     </style>
 </head>
 <body>
@@ -1026,6 +1058,9 @@
                 <div class="progress-container">
                     <div class="progress-bar">
                         <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
                         <div class="progress-step"></div>
                         <div class="progress-step"></div>
                     </div>
@@ -1206,6 +1241,54 @@
 
             <!-- Step 5 - Thank You -->
             <div id="step5" class="step hidden">
+                 <button class="back-btn" onclick="goToStep(3)">
+                    <span>←</span> Back
+                </button>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step"></div>
+                    </div>
+                </div>
+                <div class="user-detail-form">
+                   <form id="userForm">
+                    <div class="input">
+                        <input type="text" name="first_name" id="first_name" placeholder="Full Name*" required>
+                        <input type="text" name="last_name" id="last_name" placeholder="Last Name*" required>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="company_name" id="company_name" placeholder="Company Name*" required>
+                    </div>
+                    <div class="input">
+                        <input type="email" name="email" id="email" placeholder="Email*" required>
+                    </div>
+                    <div class="input">
+                        <input type="email" name="confirm_email" id="confirm_email" placeholder="Confirm Email*" required>
+                    </div>
+                    <div class="input">
+                        <input type="tel" name="phone" id="phone" placeholder="Phone Number*" required>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="delivery_address" id="delivery_address" placeholder="Delivery Address*" required>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="unit_suite" id="unit_suite" placeholder="Unit/suite (option)">
+                    </div>
+                    <div class="input">
+                        <input type="text" name="delivery_instructions" id="delivery_instructions" placeholder="Special Delivery Instructions(Optional)">
+                    </div>
+                    <div style="margin-top: 40px;">
+                        <button type="submit" class="continue-btn">Submit</button>
+                        <button type="button" class="skip-btn" onclick="goToStep(6)">Skip</button>
+                    </div>
+                   </form>
+                </div>
+            </div>
+            <div id="step6" class="step hidden">
                 <div class="thank-you-container">
                     <svg class="email-icon" viewBox="0 0 200 200" fill="none">
                         <rect x="20" y="50" width="160" height="100" rx="8" fill="#e8e4f3"/>
@@ -1277,6 +1360,14 @@
             {
                 text: "We started using CaterLoop this week and are so impressed! They have been quick to respond, timely, thoughtful, and have gone above and beyond in helping us cater office lunches and events. Would highly recommend using their services!",
                 author: "Alyssa P."
+            },
+            {
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                author: "Ralf K."
+            },
+            {
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                author: "Alina J."
             }
         ];
 
@@ -1500,56 +1591,58 @@
         }
 
         // STEP 3 - Modified for calendar functionality
+        // --- Frequency buttons (every-week / custom-dates)
         document.querySelectorAll('.frequency-option').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.frequency-option').forEach(b => b.classList.remove('selected'));
-                this.classList.add('selected');
-                formData.frequency = this.dataset.value;
-
-                const daysQuestion = document.getElementById('daysQuestion');
-                const dayButtonsContainer = document.getElementById('dayButtonsContainer');
-                const calendarContainer = document.getElementById('calendarContainer');
-
-                if (this.dataset.value === 'every-week') {
-                    daysQuestion.textContent = 'On what day(s) would you like to receive meals?';
-                    dayButtonsContainer.style.display = 'flex';
-                    calendarContainer.classList.remove('active');
-                    formData.selectedDates = [];
-                } else if (this.dataset.value === 'custom-dates') {
-                    daysQuestion.textContent = 'Select your custom delivery dates';
-                    dayButtonsContainer.style.display = 'none';
-                    calendarContainer.classList.add('active');
-                    formData.days = [];
-                    // Clear selected days
-                    document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('selected'));
-                    generateCalendars();
-                }
-                checkStep3Complete();
+             btn.addEventListener('click', function() {
+                 document.querySelectorAll('.frequency-option').forEach(b => b.classList.remove('selected'));
+                 this.classList.add('selected');
+                 formData.frequency = this.dataset.value;
+ 
+                 const daysQuestion = document.getElementById('daysQuestion');
+                 const dayButtonsContainer = document.getElementById('dayButtonsContainer');
+                 const calendarContainer = document.getElementById('calendarContainer');
+ 
+                 if (this.dataset.value === 'every-week') {
+                     daysQuestion.textContent = 'On what day(s) would you like to receive meals?';
+                     dayButtonsContainer.style.display = 'flex';
+                     calendarContainer.classList.remove('active');
+                     formData.selectedDates = [];
+                 } else if (this.dataset.value === 'custom-dates') {
+                     daysQuestion.textContent = 'Select your custom delivery dates';
+                     dayButtonsContainer.style.display = 'none';
+                     calendarContainer.classList.add('active');
+                     formData.days = [];
+                     // Clear selected days
+                     document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('selected'));
+                    generateCalendars(); // render 3 months
+                 }
+                 checkStep3Complete();
+             });
+         });
+ 
+         document.querySelectorAll('#step3 .day-btn').forEach(btn => {
+             btn.addEventListener('click', function() {
+                 this.classList.toggle('selected');
+                 const day = this.dataset.value;
+                 if (formData.days.includes(day)) {
+                     formData.days = formData.days.filter(d => d !== day);
+                 } else {
+                     formData.days.push(day);
+                 }
+                 checkStep3Complete();
             });
-        });
-
-        document.querySelectorAll('#step3 .day-btn').forEach(btn => {
+         });
+ 
+         // Allowance buttons (Daily / Weekly) - update slider bounds dynamically
+         document.querySelectorAll('#step3 .time-btn[data-value="daily"], #step3 .time-btn[data-value="weekly"]').forEach(btn => {
             btn.addEventListener('click', function() {
-                this.classList.toggle('selected');
-                const day = this.dataset.value;
-                if (formData.days.includes(day)) {
-                    formData.days = formData.days.filter(d => d !== day);
-                } else {
-                    formData.days.push(day);
-                }
-                checkStep3Complete();
-            });
-        });
-
-        document.querySelectorAll('#step3 .time-btn:not(.frequency-option)').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const parent = this.parentElement;
-                parent.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                // toggle selection among allowance buttons only
+                const allowanceButtons = Array.from(document.querySelectorAll('#step3 .time-btn[data-value="daily"], #step3 .time-btn[data-value="weekly"]'));
+                allowanceButtons.forEach(b => b.classList.remove('selected'));
                 this.classList.add('selected');
 
-                if (parent.previousElementSibling?.textContent?.toLowerCase().includes('allowance')) {
-                    formData.allowanceType = this.dataset.value;
-                }
+                formData.allowanceType = this.dataset.value; // assign daily or weekly
+                adjustAllowanceUI(this.dataset.value);
                 checkStep3Complete();
             });
         });
@@ -1560,109 +1653,149 @@
         if (slider) {
             slider.addEventListener('input', function() {
                 formData.allowanceAmount = this.value;
-                sliderValue.textContent = `${this.value}`;
-                const percentage = (this.value / 50) * 100;
+                sliderValue.textContent = `$${this.value}`;
+                const max = Number(this.max || 50);
+                const percentage = (Number(this.value) / max) * 100;
                 this.style.background = `linear-gradient(to right, #FF8702 0%, #FF8702 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
                 checkStep3Complete();
             });
         }
 
-        function toggleCredit() {
-            const toggle = document.getElementById('creditToggle');
-            if (!toggle) return;
-            toggle.classList.toggle('on');
-            toggle.classList.toggle('off');
-            formData.creditCard = toggle.classList.contains('on');
+        // fix the slider background calculation and support dynamic max
+        function setSliderBackground(sliderEl, value, max) {
+            const percentage = (value / max) * 100;
+            sliderEl.style.background = `linear-gradient(to right, #FF8702 0%, #FF8702 ${percentage}%, #e0e0e0 ${percentage}%, #e0e0e0 100%)`;
         }
-
-        function checkStep3Complete() {
-            let complete = false;
-            if (formData.frequency === 'every-week') {
-                complete = formData.days.length > 0 && formData.allowanceType;
-            } else if (formData.frequency === 'custom-dates') {
-                complete = formData.selectedDates.length > 0 && formData.allowanceType;
+ 
+        function adjustAllowanceUI(type) {
+            // question element sits just above .slider-container
+            const questionEl = document.querySelector('.slider-container')?.previousElementSibling;
+            const sliderEl = document.getElementById('allowanceSlider');
+            const sliderValueEl = document.getElementById('sliderValue');
+            const labels = document.querySelector('.slider-labels');
+ 
+            if (!sliderEl || !sliderValueEl) return;
+ 
+            if (type === 'daily') {
+                if (questionEl) questionEl.textContent = 'Daily per person allowance';
+                sliderEl.max = 50;
+                if (Number(sliderEl.value) > 50) sliderEl.value = 20;
+                sliderValueEl.textContent = `$${sliderEl.value}`;
+                if (labels) {
+                    labels.children[0].textContent = '$0';
+                    labels.children[1].textContent = '$50';
+                }
+                setSliderBackground(sliderEl, Number(sliderEl.value), 50);
+            } else if (type === 'weekly') {
+                if (questionEl) questionEl.textContent = 'Weekly per person allowance';
+                sliderEl.max = 100;
+                // pick a sensible default if current value too high/low
+                if (Number(sliderEl.value) > 100) sliderEl.value = 50;
+                sliderValueEl.textContent = `$${sliderEl.value}`;
+                if (labels) {
+                    labels.children[0].textContent = '$0';
+                    labels.children[1].textContent = '$100';
+                }
+                setSliderBackground(sliderEl, Number(sliderEl.value), 100);
             }
-            const step3Btn = document.getElementById('step3Btn');
-            if (step3Btn) step3Btn.disabled = !complete;
+            formData.allowanceAmount = Number(sliderEl.value);
         }
-
-        const step3Btn = document.getElementById('step3Btn');
-        if (step3Btn) step3Btn.addEventListener('click', () => goToStep(4));
-
-        // Calendar generation functions
-        function generateCalendars() {
-            const calendarsWrapper = document.getElementById('calendarsWrapper');
-            calendarsWrapper.innerHTML = '';
-
-            const today = new Date();
-            const currentYear = today.getFullYear();
-            const currentMonth = today.getMonth();
-
-            for (let i = 0; i < 3; i++) {
-                const calendarDate = new Date(currentYear, currentMonth + i, 1);
-                createCalendar(calendarDate, calendarsWrapper, today);
-            }
-        }
-
-        function createCalendar(date, container, today) {
-            const year = date.getFullYear();
-            const month = date.getMonth();
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'];
-
-            const calendar = document.createElement('div');
-            calendar.className = 'calendar';
-
-            const header = document.createElement('div');
-            header.className = 'calendar-header';
-            header.textContent = `${monthNames[month]} ${year}`;
-            calendar.appendChild(header);
-
-            const weekdays = document.createElement('div');
-            weekdays.className = 'calendar-weekdays';
-            ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
-                const dayEl = document.createElement('div');
-                dayEl.className = 'calendar-weekday';
-                dayEl.textContent = day;
-                weekdays.appendChild(dayEl);
-            });
-            calendar.appendChild(weekdays);
-
-            const daysContainer = document.createElement('div');
-            daysContainer.className = 'calendar-days';
-
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                daysContainer.appendChild(emptyDay);
-            }
-
+ 
+         function toggleCredit() {
+             const toggle = document.getElementById('creditToggle');
+             if (!toggle) return;
+             toggle.classList.toggle('on');
+             toggle.classList.toggle('off');
+             formData.creditCard = toggle.classList.contains('on');
+         }
+ 
+         function checkStep3Complete() {
+             let complete = false;
+             if (formData.frequency === 'every-week') {
+                 complete = formData.days.length > 0 && formData.allowanceType;
+             } else if (formData.frequency === 'custom-dates') {
+                 complete = formData.selectedDates.length > 0 && formData.allowanceType;
+             }
+             const step3Btn = document.getElementById('step3Btn');
+             if (step3Btn) step3Btn.disabled = !complete;
+         }
+ 
+         const step3Btn = document.getElementById('step3Btn');
+         if (step3Btn) step3Btn.addEventListener('click', () => goToStep(4));
+ 
+         // Calendar generation functions
+         function generateCalendars() {
+             const calendarsWrapper = document.getElementById('calendarsWrapper');
+             calendarsWrapper.innerHTML = '';
+ 
+             const today = new Date();
+             // render exactly 3 months: current, next, next+1
+             for (let i = 0; i < 3; i++) {
+                 const calendarDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+                 createCalendar(calendarDate, calendarsWrapper, today);
+             }
+         }
+ 
+         function createCalendar(date, container, today) {
+             const year = date.getFullYear();
+             const month = date.getMonth();
+             const firstDay = new Date(year, month, 1).getDay();
+             const daysInMonth = new Date(year, month + 1, 0).getDate();
+ 
+             const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                 'July', 'August', 'September', 'October', 'November', 'December'];
+ 
+             const calendar = document.createElement('div');
+             calendar.className = 'calendar';
+ 
+             const header = document.createElement('div');
+             header.className = 'calendar-header';
+             header.textContent = `${monthNames[month]} ${year}`;
+             calendar.appendChild(header);
+ 
+             const weekdays = document.createElement('div');
+             weekdays.className = 'calendar-weekdays';
+             ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+                 const dayEl = document.createElement('div');
+                 dayEl.className = 'calendar-weekday';
+                 dayEl.textContent = day;
+                 weekdays.appendChild(dayEl);
+             });
+             calendar.appendChild(weekdays);
+ 
+             const daysContainer = document.createElement('div');
+             daysContainer.className = 'calendar-days';
+ 
+             for (let i = 0; i < firstDay; i++) {
+                 const emptyDay = document.createElement('div');
+                 emptyDay.className = 'calendar-day empty';
+                 daysContainer.appendChild(emptyDay);
+             }
+ 
+            // earliest selectable date = today + 5 days
+            const minSelectable = new Date(today);
+            minSelectable.setDate(today.getDate() + 5);
+ 
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayDate = new Date(year, month, day);
                 const dayEl = document.createElement('div');
                 dayEl.className = 'calendar-day';
                 dayEl.textContent = day;
-
-                const isCurrentMonth = (year === today.getFullYear() && month === today.getMonth());
-                const sixDaysFromNow = new Date(today);
-                sixDaysFromNow.setDate(today.getDate() + 6);
-
-                if (isCurrentMonth && dayDate < sixDaysFromNow) {
-                    dayEl.classList.add('disabled');
-                } else if (dayDate < today) {
+ 
+                // disable if before minSelectable
+                if (dayDate < minSelectable) {
                     dayEl.classList.add('disabled');
                 } else {
                     const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     if (formData.selectedDates.includes(dateString)) {
                         dayEl.classList.add('selected');
                     }
-
+ 
                     dayEl.addEventListener('click', function() {
+                        // ensure date still within the three-month window and >= minSelectable
+                        if (dayDate < minSelectable) return;
+ 
                         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                        
                         if (formData.selectedDates.includes(dateStr)) {
                             formData.selectedDates = formData.selectedDates.filter(d => d !== dateStr);
                             this.classList.remove('selected');
@@ -1670,54 +1803,54 @@
                             formData.selectedDates.push(dateStr);
                             this.classList.add('selected');
                         }
-                        
+ 
                         updateSelectedDatesSummary();
                         checkStep3Complete();
                     });
                 }
-
+ 
                 daysContainer.appendChild(dayEl);
             }
-
-            calendar.appendChild(daysContainer);
-            container.appendChild(calendar);
-        }
-
-        function updateSelectedDatesSummary() {
-            const summaryList = document.getElementById('selectedDatesList');
-            summaryList.innerHTML = '';
-
-            if (formData.selectedDates.length === 0) {
-                summaryList.innerHTML = '<span style="color: #666;">No dates selected</span>';
-                return;
-            }
-
-            formData.selectedDates.sort().forEach(dateStr => {
-                const date = new Date(dateStr + 'T00:00:00');
-                const formatted = date.toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric', 
-                    year: 'numeric' 
-                });
-
-                const tag = document.createElement('div');
-                tag.className = 'selected-date-tag';
-                tag.innerHTML = `
-                    ${formatted}
-                    <span class="remove-date" data-date="${dateStr}">✕</span>
-                `;
-
-                tag.querySelector('.remove-date').addEventListener('click', function() {
-                    const dateToRemove = this.dataset.date;
-                    formData.selectedDates = formData.selectedDates.filter(d => d !== dateToRemove);
-                    generateCalendars();
-                    updateSelectedDatesSummary();
-                    checkStep3Complete();
-                });
-
-                summaryList.appendChild(tag);
-            });
-        }
+ 
+             calendar.appendChild(daysContainer);
+             container.appendChild(calendar);
+         }
+ 
+         function updateSelectedDatesSummary() {
+             const summaryList = document.getElementById('selectedDatesList');
+             summaryList.innerHTML = '';
+ 
+             if (formData.selectedDates.length === 0) {
+                 summaryList.innerHTML = '<span style="color: #666;">No dates selected</span>';
+                 return;
+             }
+ 
+             formData.selectedDates.sort().forEach(dateStr => {
+                 const date = new Date(dateStr + 'T00:00:00');
+                 const formatted = date.toLocaleDateString('en-US', { 
+                     month: 'short', 
+                     day: 'numeric', 
+                     year: 'numeric' 
+                 });
+ 
+                 const tag = document.createElement('div');
+                 tag.className = 'selected-date-tag';
+                 tag.innerHTML = `
+                     ${formatted}
+                     <span class="remove-date" data-date="${dateStr}">✕</span>
+                 `;
+ 
+                 tag.querySelector('.remove-date').addEventListener('click', function() {
+                     const dateToRemove = this.dataset.date;
+                     formData.selectedDates = formData.selectedDates.filter(d => d !== dateToRemove);
+                     generateCalendars();
+                     updateSelectedDatesSummary();
+                     checkStep3Complete();
+                 });
+ 
+                 summaryList.appendChild(tag);
+             });
+         }
 
         // STEP 4
         document.querySelectorAll('#step4 .dietary-btn').forEach(btn => {
@@ -1747,20 +1880,29 @@
             if (el) el.classList.remove('hidden');
             currentStep = step;
 
-            if (step === 4) {
-                document.getElementById('testimonialContent').classList.add('hidden');
-                document.getElementById('infoCard').classList.remove('hidden');
-            } else if (step === 5) {
-                document.getElementById('testimonialContent').classList.add('hidden');
-                document.getElementById('infoCard').classList.add('hidden');
-            } else {
+            if (step === 2) {
                 document.getElementById('testimonialContent').classList.remove('hidden');
                 document.getElementById('infoCard').classList.add('hidden');
-
-                const testimonialIndex = (step - 1) % testimonials.length;
-                document.getElementById('testimonialText').textContent = testimonials[testimonialIndex].text;
-                document.getElementById('testimonialAuthor').textContent = '- ' + testimonials[testimonialIndex].author;
+            } else if (step === 3) {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
             }
+            else if (step === 4) {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+            }else if (step === 5) {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+            }else if (step === 6) {
+                document.getElementById('testimonialContent').classList.add('hidden');
+                document.getElementById('infoCard').classList.remove('hidden');
+            }else {
+                document.getElementById('testimonialContent').classList.remove('hidden');
+                document.getElementById('infoCard').classList.add('hidden');
+}
+            const testimonialIndex = (step - 1) % testimonials.length;
+            document.getElementById('testimonialText').textContent = testimonials[testimonialIndex].text;
+            document.getElementById('testimonialAuthor').textContent = '- ' + testimonials[testimonialIndex].author;
 
             window.scrollTo(0, 0);
         }
@@ -1815,6 +1957,89 @@
         });
 
         updateCarousel();
+
+        // Form submit handler: collect visible form fields and merge with step data (formData)
+        (function attachFormSubmit() {
+            const userForm = document.getElementById('userForm');
+            if (!userForm) return;
+
+            userForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // collect form fields
+                const fd = new FormData(userForm);
+                const userFields = {};
+                fd.forEach((value, key) => { userFields[key] = value; });
+
+                // combine with the previously collected multi-step data
+                const payload = Object.assign({}, formData, { user: userFields });
+
+                try {
+                    // Create a structured object with all the form data
+                    const formObject = {
+                        // Step 1 data
+                        teamSize: formData.teamSize,
+                        
+                        // Step 2 data
+                        mealType: formData.mealType,
+                        customMealName: formData.customMealName,
+                        deliveryTime: formData.deliveryTime,
+                        
+                        // Step 3 data
+                        frequency: formData.frequency,
+                        days: formData.days,
+                        selectedDates: formData.selectedDates,
+                        startDate: formData.startDate,
+                        allowanceType: formData.allowanceType,
+                        allowanceAmount: formData.allowanceAmount,
+                        creditCard: formData.creditCard,
+                        
+                        // Step 4 data
+                        dietary: formData.dietary,
+                        
+                        // Step 5 - User Details
+                        userDetails: {
+                            firstName: fd.get('first_name'),
+                            lastName: fd.get('last_name'),
+                            companyName: fd.get('company_name'),
+                            email: fd.get('email'),
+                            phone: fd.get('phone'),
+                            deliveryAddress: fd.get('delivery_address'),
+                            unitSuite: fd.get('unit_suite'),
+                            instructions: fd.get('delivery_instructions')
+                        }
+                    };
+
+                    const res = await fetch('submit.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formObject)
+                    });
+
+                    // Check if we got HTML response (data display) or JSON
+                    const contentType = res.headers.get('content-type');
+                    if (contentType && contentType.includes('text/html')) {
+                        // If HTML response, display it in a new window
+                        const text = await res.text();
+                        const win = window.open('', 'FormData');
+                        win.document.write(text);
+                    } else {
+                        // Try parsing as JSON for error handling
+                        const json = await res.json().catch(() => null);
+                        if (!res.ok) {
+                            const msg = (json && json.message) ? json.message : (res.statusText || 'Submission failed');
+                            alert('Submission failed: ' + msg);
+                            return;
+                        }
+                    }
+                    
+                    // If we got here, submission was successful
+                    goToStep(6);
+                } catch (err) {
+                    alert('Error submitting form: ' + (err.message || err));
+                }
+            });
+        })();
     </script>
 </body>
-</html>">
+</html>
